@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'review/show'
-  get 'movie/index'
-  get 'movie/show'
+  get 'reviews/show'
+  get 'movies/index'
+  get 'movies/show'
   get 'users/userhome'
   get 'users/show'
   get 'users/edit'
