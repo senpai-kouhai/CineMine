@@ -2,6 +2,9 @@
 
 <ul>
   <% @movies.each do |movie| %>
-    <li><%= movie.title %></li>
+    <li><%= movie["title"] %></li>
+    <li><%= movie["id"] %></li>
   <% end %>
 </ul>
+
+<%= link_to 'Next page', movies_index_path(page: (params[:page] || 1).to_i + 1) %>
