@@ -15,17 +15,25 @@ class MoviesController < ApplicationController
       redirect_to movies_index_path(page: 1) and return
     end
 
-    def search
-      if params[:genre].present?
-        @movies = MovieSearchService.search_by_genre(params[:genre])
-      elsif params[:min_rating].present? && params[:max_rating].present?
-        @movies = MovieSearchService.search_by_rating(params[:min_rating], params[:max_rating])
-      else
-        @movies = MovieSearchService.search_by_keyword(params[:keyword])
-      end
-    end
+    @genres = MovieGenresService.fetch_genres
   end
 
+  def search
+    if params[:genre].present?
+      response = MovieSearchService.search_by_genre(params[:genre], params[:page])
+    else
+      response = MovieSearchService.search_by_keyword(params[:keyword], params[:page] || 1)
+    end
+
+    @movies = response['results']
+    @page = params[:page].to_i
+    @total_pages = response['total_pages']
+
+    if @movies.nil?
+      flash[:alert] = "APIからデータを取得できませんでした。再度お試しください。"
+      redirect_to search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword]) and return
+    end
+  end
 
   def show
   end

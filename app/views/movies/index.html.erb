@@ -2,6 +2,7 @@
 
 <div class="container">
   <div class="row">
+    <!--検索バー↓-->
     <div class="col-lg-3">
       <h1>Search for a Movie</h1>
         <%= form_with(url: search_movies_path, method: :get, local: true) do %>
@@ -9,18 +10,13 @@
           <%= text_field_tag :keyword %>
 
           <%= label_tag :genre, 'Genre' %>
-          <%= text_field_tag :genre %>
-
-          <%= label_tag :min_rating, 'Minimum Rating' %>
-          <%= text_field_tag :min_rating %>
-
-          <%= label_tag :max_rating, 'Maximum Rating' %>
-          <%= text_field_tag :max_rating %>
+          <%= select_tag :genre, options_for_select([['', nil]] + @genres.map { |g| [g['name'], g['id']] }) %>
 
           <%= submit_tag 'Search' %>
         <% end %>
     </div>
 
+    <!--映画一覧↓-->
     <div class="col-lg-9">
       <div class="row">
         <% @movies.each_with_index do |movie, index| %>
@@ -86,3 +82,15 @@
     <span class="pagination-link disabled">Next</span>
   <% end %>
 </div>
+
+<script>
+$(document).ready(function() {
+  $('input:not([type="submit"]), select').on('input', function() {
+    if ($(this).val()) {
+      $('input:not([type="submit"]), select').not(this).prop('disabled', true).val('');
+    } else {
+      $('input:not([type="submit"]), select').prop('disabled', false);
+    }
+  });
+});
+</script>
