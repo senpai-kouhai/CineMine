@@ -1,10 +1,88 @@
 <h1>Popular Movies</h1>
 
-<ul>
-  <% @movies.each do |movie| %>
-    <li><%= movie["title"] %></li>
-    <li><%= movie["id"] %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1>Search for a Movie</h1>
+        <%= form_with(url: search_movies_path, method: :get, local: true) do %>
+          <%= label_tag :keyword, 'Keyword' %>
+          <%= text_field_tag :keyword %>
 
-<%= link_to 'Next page', movies_index_path(page: (params[:page] || 1).to_i + 1) %>
+          <%= label_tag :genre, 'Genre' %>
+          <%= text_field_tag :genre %>
+
+          <%= label_tag :min_rating, 'Minimum Rating' %>
+          <%= text_field_tag :min_rating %>
+
+          <%= label_tag :max_rating, 'Maximum Rating' %>
+          <%= text_field_tag :max_rating %>
+
+          <%= submit_tag 'Search' %>
+        <% end %>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <% @movies.each_with_index do |movie, index| %>
+          <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+            <div class="card">
+              <% if movie["poster_path"] %>
+                <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+              <% else %>
+                <div class="card-body">
+                  <p class="card-text">No poster available</p>
+                </div>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= movie["title"] %></h5>
+                <p class="card-text"><%= movie["id"] %></p>
+              </div>
+            </div>
+          </div>
+          <% if (index + 1) % 5 == 0 %>
+            <div class="w-100"></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--ページネーション↓-->
+<div class="pagination">
+  <% if @page > 1 %>
+    <%= link_to 'Previous', movies_path(page: @page - 1), class: 'pagination-link' %>
+  <% else %>
+    <span class="pagination-link disabled">Previous</span>
+  <% end %>
+
+  <% if @page > 3 %>
+    <%= link_to 1, movies_path(page: 1), class: 'pagination-link' %>
+    <% if @page > 4 %>
+      <span class="pagination-ellipsis">&hellip;</span>
+    <% end %>
+  <% end %>
+
+  <% (@page - 2..@page + 2).each do |num| %>
+    <% if num > 0 && num <= @total_pages %>
+      <% if num == @page %>
+        <span class="pagination-link active"><%= num %></span>
+      <% else %>
+        <%= link_to num, movies_path(page: num), class: 'pagination-link' %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @page < @total_pages - 2 %>
+    <% if @page < @total_pages - 3 %>
+      <span class="pagination-ellipsis">&hellip;</span>
+    <% end %>
+  <% end %>
+
+  <% if @page < @total_pages %>
+    <%= link_to 'Next', movies_path(page: @page + 1), class: 'pagination-link' %>
+  <% else %>
+    <span class="pagination-link disabled">Next</span>
+  <% end %>
+</div>

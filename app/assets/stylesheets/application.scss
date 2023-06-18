@@ -14,3 +14,35 @@
  *= require_self
  */
 @import 'bootstrap/scss/bootstrap';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination-link {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  color: #333;
+//   border-radius: 20px; 検討する
+  transition: background-color 0.3s;
+}
+
+.pagination-link.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.pagination-link.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination-ellipsis {
+  margin: 0 4px;
+  color: #999;
+}
