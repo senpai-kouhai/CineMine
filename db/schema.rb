@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_16_064722) do
+ActiveRecord::Schema.define(version: 2023_06_19_080025) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,21 @@ ActiveRecord::Schema.define(version: 2023_06_16_064722) do
     t.string "genre"
     t.text "overview"
     t.string "poster_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "story_rating"
+    t.text "story_comment"
+    t.integer "cast_rating"
+    t.text "cast_comment"
+    t.integer "music_rating"
+    t.text "music_comment"
+    t.integer "direction_rating"
+    t.text "direction_comment"
+    t.integer "movie_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

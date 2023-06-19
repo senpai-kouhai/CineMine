@@ -1,2 +1,60 @@
 <h1>Movie#show</h1>
-<p>Find me in app/views/movie/show.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @movie['poster_path'] %>
+        <img src="https://image.tmdb.org/t/p/w500<%= @movie['poster_path'] %>" alt="<%= @movie['title'] %>" class="img-fluid">
+      <% else %>
+        <p>No poster available</p>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <h2><%= @movie['title'] %></h2>
+      <p><%= @movie['overview'] %></p>
+      <p>公開日: <%= @movie['release_date'] %></p>
+    </div>
+  </div>
+</div>
+
+<button id="review-button" onclick="toggleForm()">この映画のレビューを書く</button>
+
+<!--レビューフォーム↓-->
+<%= form_with model: [ @movie, @movie.reviews.build ], local: true do |f| %>
+  <div id="review-form" style="display: none;">
+    <%= f.label :story_rating, 'ストーリーの評価' %>
+    <%= f.number_field :story_rating, in: 1..5 %>
+    <%= f.label :story_comment, 'ストーリーのコメント' %>
+    <%= f.text_area :story_comment %>
+
+    <%= f.label :cast_rating, 'キャストの評価' %>
+    <%= f.number_field :cast_rating, in: 1..5 %>
+    <%= f.label :cast_comment, 'キャストのコメント' %>
+    <%= f.text_area :cast_comment %>
+
+    <%= f.label :music_rating, '音楽の評価' %>
+    <%= f.number_field :music_rating, in: 1..5 %>
+    <%= f.label :music_comment, '音楽のコメント' %>
+    <%= f.text_area :music_comment %>
+
+    <%= f.label :direction_rating, '演出＆映像の評価' %>
+    <%= f.number_field :direction_rating, in: 1..5 %>
+    <%= f.label :direction_comment, '演出＆映像コメント' %>
+    <%= f.text_area :direction_comment %>
+
+    <%= f.submit 'レビューを投稿' %>
+  </div>
+<% end %>
+
+<!--同ページ内でのフォームの表示・非表示↓-->
+<script>
+  function toggleForm() {
+    var form = document.getElementById('review-form');
+    if (form.style.display === "none") {
+      form.style.display = "block";
+    } else {
+      form.style.display = "none";
+    }
+  }
+</script>

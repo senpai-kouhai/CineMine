@@ -4,25 +4,27 @@ class MoviesController < ApplicationController
   API_KEY = ENV['TMDB_API_KEY']
 
   def index
-    page = params[:page].to_i
-    response = MovieIndexService.fetch_popular_movies(page)
-    @movies = response['results']
-    @page = page
-    @total_pages = response['total_pages']
+    params[:page] ||= 1
+    @genres = MovieGenresService.fetch_genres
 
-    if @movies.nil?
+    response = MovieIndexService.fetch_popular_movies(params[:page].to_i)
+    if response['results'].nil?
       flash[:alert] = "APIからデータを取得できませんでした。再度お試しください。"
       redirect_to movies_index_path(page: 1) and return
     end
 
-    @genres = MovieGenresService.fetch_genres
+    @movies = response['results']
+    @page = params[:page].to_i
+    @total_pages = response['total_pages']
   end
 
   def search
+    params[:page] ||= 1
+
     if params[:genre].present?
       response = MovieSearchService.search_by_genre(params[:genre], params[:page])
     else
-      response = MovieSearchService.search_by_keyword(params[:keyword], params[:page] || 1)
+      response = MovieSearchService.search_by_keyword(params[:keyword], params[:page])
     end
 
     @movies = response['results']
@@ -36,5 +38,12 @@ class MoviesController < ApplicationController
   end
 
   def show
+    movie_id = params[:id]
+    @movie = MovieDetailsService.fetch_movie_details(movie_id)
+
+    if @movie.nil?
+      flash[:alert] = "映画の詳細を取得できませんでした。再度お試しください。"
+      redirect_to movies_path and return
+    end
   end
 end

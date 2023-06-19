@@ -4,18 +4,20 @@
   <div class="row justify-content-center">
     <% @movies.each_with_index do |movie, index| %>
       <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
-        <div class="card">
-          <% if movie['poster_path'] %>
-            <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
-          <% else %>
+        <%= link_to movie_path(movie['id']), class: "text-decoration-none text-dark", style: "text-decoration: none;" do %>
+          <div class="card">
+            <% if movie['poster_path'] %>
+              <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+            <% else %>
+              <div class="card-body">
+                <p class="card-text">No poster available</p>
+              </div>
+            <% end %>
             <div class="card-body">
-              <p class="card-text">No poster available</p>
+              <h5 class="card-title"><%= movie['title'] %></h5>
             </div>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= movie['title'] %></h5>
           </div>
-        </div>
+        <% end %>
       </div>
       <% if (index + 1) % 5 == 0 %>
         <div class="w-100"></div>
@@ -25,38 +27,4 @@
 </div>
 
 <!--ページネーション↓-->
-<div class="pagination">
-  <% if @page > 1 %>
-    <%= link_to 'Previous', search_movies_path(page: @page - 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
-  <% else %>
-    <span class="pagination-link disabled">Previous</span>
-  <% end %>
-
-  <% if @page > 3 %>
-    <%= link_to 1, search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
-      <% if @page > 4 %>
-        <span class="pagination-ellipsis">&hellip;</span>
-      <% end %>
-  <% end %>
-
-<% (@page - 2..@page + 2).each do |num| %>
-  <% if num > 0 && num <= @total_pages %>
-    <% if num == @page %>
-      <span class="pagination-link active"><%= num %></span>
-    <% else %>
-      <%= link_to num, search_movies_path(page: num, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %> <% end %>
-    <% end %>
-  <% end %>
-
-  <% if @page < @total_pages - 2 %>
-    <% if @page < @total_pages - 3 %>
-      <span class="pagination-ellipsis">&hellip;</span>
-    <% end %>
-  <% end %>
-
-  <% if @page < @total_pages %>
-    <%= link_to 'Next', search_movies_path(page: @page + 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
-  <% else %>
-    <span class="pagination-link disabled">Next</span>
-  <% end %>
-</div>
+<%= render 'shared/pagination' %>

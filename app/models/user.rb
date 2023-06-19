@@ -10,4 +10,5 @@ class User < ApplicationRecord
     admin
   end
 
+  has_many :reviews
 end

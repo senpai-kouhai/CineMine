@@ -1,0 +1,37 @@
+<div class="pagination">
+  <% if @page > 1 %>
+    <%= link_to 'Previous', url_for(page: @page - 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
+  <% else %>
+    <span class="pagination-link disabled">Previous</span>
+  <% end %>
+
+  <% if @page > 3 %>
+    <%= link_to 1, url_for(page: 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
+    <% if @page > 4 %>
+      <span class="pagination-ellipsis">&hellip;</span>
+    <% end %>
+  <% end %>
+
+  <% (@page - 2..@page + 2).each do |num| %>
+    <% if num > 0 && num <= @total_pages %>
+      <% if num == @page %>
+        <span class="pagination-link active"><%= num %></span>
+      <% else %>
+        <%= link_to num, url_for(page: num, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @page < @total_pages - 2 %>
+    <% if @page < @total_pages - 3 %>
+      <span class="pagination-ellipsis">&hellip;</span>
+    <% end %>
+    <%= link_to @total_pages, url_for(page: @total_pages, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
+  <% end %>
+
+  <% if @page < @total_pages %>
+    <%= link_to 'Next', url_for(page: @page + 1, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
+  <% else %>
+    <span class="pagination-link disabled">Next</span>
+  <% end %>
+</div>
