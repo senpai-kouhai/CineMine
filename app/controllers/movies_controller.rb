@@ -45,5 +45,8 @@ class MoviesController < ApplicationController
       flash[:alert] = "映画の詳細を取得できませんでした。再度お試しください。"
       redirect_to movies_path and return
     end
+
+    @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews.includes(:user).order(created_at: :desc)
   end
 end

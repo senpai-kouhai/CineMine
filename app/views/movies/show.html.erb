@@ -47,6 +47,21 @@
   </div>
 <% end %>
 
+<!--レビュー一覧↓-->
+<% @reviews.each do |review| %>
+  <div>
+    <h3><%= review.user.id %><%= review.user.username %>さんのレビュー</h3>
+    <p>ストーリーの評価: <%= review.story_rating %></p>
+    <p><%= review.story_comment %></p>
+    <p>キャストの評価: <%= review.cast_rating %></p>
+    <p><%= review.cast_comment %></p>
+    <p>音楽の評価: <%= review.music_rating %></p>
+    <p><%= review.music_comment %></p>
+    <p>演出＆映像の評価: <%= review.direction_rating %></p>
+    <p><%= review.direction_comment %></p>
+  </div>
+<% end %>
+
 <!--同ページ内でのフォームの表示・非表示↓-->
 <script>
   function toggleForm() {
