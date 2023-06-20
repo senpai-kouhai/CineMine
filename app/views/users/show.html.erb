@@ -1,2 +1,34 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>ユーザー詳細</h1>
+
+<p>
+  <strong>ユーザーID:</strong>
+  <%= @user.id %>
+</p>
+
+<p>
+  <strong>ユーザー名:</strong>
+  <%= @user.username %>
+</p>
+
+<h2>レビュー一覧</h2>
+
+<% @reviews.each do |review| %>
+  <div>
+    <% if review.movie.poster_path %>
+      <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster" style="height: auto; width: auto; max-height: 300px; max-width: 300px;">
+    <% else %>
+      <div class="card-body">
+        <p class="card-text">No poster available</p>
+      </div>
+    <% end %>
+    <p><%= review.movie.title %>のレビュー</p>
+    <p>ストーリーの評価: <%= review.story_rating %></p>
+    <p><%= review.story_comment %></p>
+    <p>キャストの評価: <%= review.cast_rating %></p>
+    <p><%= review.cast_comment %></p>
+    <p>音楽の評価: <%= review.music_rating %></p>
+    <p><%= review.music_comment %></p>
+    <p>演出＆映像の評価: <%= review.direction_rating %></p>
+    <p><%= review.direction_comment %></p>
+  </div>
+<% end %>

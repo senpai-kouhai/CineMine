@@ -1,0 +1,64 @@
+<h1>Popular Movies</h1>
+
+<div class="container">
+  <div class="row">
+    <!--検索バー↓-->
+    <div class="col-lg-3">
+      <h1>Search for a Movie</h1>
+        <%= form_with(url: search_movies_path, method: :get, local: true) do %>
+          <%= label_tag :keyword, 'Keyword' %>
+          <%= text_field_tag :keyword %>
+
+          <%= label_tag :genre, 'Genre' %>
+          <%= select_tag :genre, options_for_select([['', nil]] + @genres.map { |g| [g['name'], g['id']] }) %>
+
+          <%= submit_tag 'Search' %>
+        <% end %>
+    </div>
+
+    <!--映画一覧↓-->
+    <div class="col-lg-9">
+      <div class="row">
+        <% @movies.each_with_index do |movie, index| %>
+          <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+            <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
+              <div class="card">
+                <% if movie["poster_path"] %>
+                  <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+                <% else %>
+                  <div class="card-body">
+                    <p class="card-text">No poster available</p>
+                  </div>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= movie["title"] %></h5>
+                  <p class="card-text"><%= movie["id"] %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% if (index + 1) % 5 == 0 %>
+            <div class="w-100"></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--ページネーション↓-->
+<%= render 'shared/pagination' %>
+
+<!--一つの検索要素を使用中は他の検索欄が無効化↓-->
+<script>
+$(document).ready(function() {
+  $('input:not([type="submit"]), select').on('input', function() {
+    if ($(this).val()) {
+      $('input:not([type="submit"]), select').not(this).prop('disabled', true).val('');
+    } else {
+      $('input:not([type="submit"]), select').prop('disabled', false);
+    }
+  });
+});
+</script>

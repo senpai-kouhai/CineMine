@@ -1,0 +1,30 @@
+<h1>Movie Search Results</h1>
+
+<div class="mx-auto">
+  <div class="row justify-content-center">
+    <% @movies.each_with_index do |movie, index| %>
+      <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+        <%= link_to movie_path(movie['id']), class: "text-decoration-none text-dark", style: "text-decoration: none;" do %>
+          <div class="card">
+            <% if movie['poster_path'] %>
+              <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+            <% else %>
+              <div class="card-body">
+                <p class="card-text">No poster available</p>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= movie['title'] %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if (index + 1) % 5 == 0 %>
+        <div class="w-100"></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!--ページネーション↓-->
+<%= render 'shared/pagination' %>
