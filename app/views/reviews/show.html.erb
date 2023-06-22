@@ -1,0 +1,30 @@
+<h1><%= @review.movie.title %>のレビュー</h1>
+
+
+<% if @review.movie.poster_path %>
+  <img src="https://image.tmdb.org/t/p/w500<%= @review.movie.poster_path %>" class="card-img-top" alt="<%= @review.movie.title %> poster" style="height: auto; width: auto; max-height: 300px; max-width: 300px;">
+<% else %>
+  <p class="card-text">No poster available</p>
+<% end %>
+
+<p>ストーリーの評価: <%= @review.story_rating %></p>
+<p><%= @review.story_comment %></p>
+<p>キャストの評価: <%= @review.cast_rating %></p>
+<p><%= @review.cast_comment %></p>
+<p>音楽の評価: <%= @review.music_rating %></p>
+<p><%= @review.music_comment %></p>
+<p>演出＆映像の評価: <%= @review.direction_rating %></p>
+<p><%= @review.direction_comment %></p>
+
+<!-- 「いいね」ボタン -->
+<div id="like-button">
+  <% like = current_user.likes.find_by(review_id: @review.id) %>
+  <% if like %>
+    <%= link_to 'Unlike', movie_review_like_path(@review.movie, like, format: :js), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to 'Like', movie_review_likes_path(@review.movie, @review, format: :js), method: :post, remote: true %>
+  <% end %>
+</div>
+
+<!-- 「いいね」の数 -->
+<p id="like_count"><%= @review.likes.count %> Likes</p>

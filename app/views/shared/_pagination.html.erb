@@ -26,7 +26,6 @@
     <% if @page < @total_pages - 3 %>
       <span class="pagination-ellipsis">&hellip;</span>
     <% end %>
-    <%= link_to @total_pages, url_for(page: @total_pages, genre: params[:genre], keyword: params[:keyword]), class: 'pagination-link' %>
   <% end %>
 
   <% if @page < @total_pages %>

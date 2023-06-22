@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   resources :movies, only: [:index, :show] do
-    resources :reviews, only: [:create, :show]
+    resources :reviews, only: [:create, :show] do
+      resources :likes, only: [:create, :destroy], module: :reviews
+    end
     collection do
       get 'search'
     end
@@ -18,4 +20,6 @@ Rails.application.routes.draw do
 
   get 'homes/top'
   get 'homes/about'
+
+  resources :relationships, only: [:create, :destroy]
 end
