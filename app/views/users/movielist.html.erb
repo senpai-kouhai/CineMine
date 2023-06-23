@@ -1,2 +1,23 @@
-<h1>Users#movielist</h1>
-<p>Find me in app/views/users/movielist.html.erb</p>
+<% @movies.each_with_index do |movie, index| %>
+  <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+    <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
+      <div class="card">
+        <% if movie["poster_path"] %>
+          <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+        <% else %>
+          <div class="card-body">
+            <p class="card-text">No poster available</p>
+          </div>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= movie["title"] %></h5>
+        </div>
+      </div>
+    <% end %>
+    <!-- Add to Movielist Button -->
+    <%= button_to 'Remove from Movielist', remove_from_movielist_movie_path(movie["id"]), method: :delete %>
+  </div>
+  <% if (index + 1) % 5 == 0 %>
+    <div class="w-100"></div>
+  <% end %>
+<% end %>

@@ -49,4 +49,14 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.includes(:user).order(created_at: :desc)
   end
+
+  def add_to_movielist
+    current_user.add_to_movielist(params[:id])
+    redirect_to movie_path(params[:id])
+  end
+
+  def remove_from_movielist
+    current_user.remove_from_movielist(params[:id])
+    redirect_to movie_path(params[:id])
+  end
 end

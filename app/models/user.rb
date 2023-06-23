@@ -54,4 +54,22 @@ class User < ApplicationRecord
       return nil
     end
   end
+
+  has_many :movie_lists
+  has_many :listed_movies, through: :movie_lists, source: :movie
+
+  def add_to_movielist(tmdb_id)
+    movie = Movie.find_by(tmdb_id: tmdb_id)
+
+    if movie
+      movie_lists.create(movie: movie, tmdb_id: tmdb_id)
+    else
+      movie_lists.create(tmdb_id: tmdb_id)
+    end
+  end
+
+  def remove_from_movielist(tmdb_id)
+    movie_lists.find_by(tmdb_id: tmdb_id).destroy
+  end
+
 end

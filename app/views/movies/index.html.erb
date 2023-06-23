@@ -32,10 +32,11 @@
                 <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%= movie["title"] %></h5>
-                  <p class="card-text"><%= movie["id"] %></p>
                 </div>
               </div>
             <% end %>
+            <!-- Add to Movielist Button -->
+            <%= button_to 'Add to Movielist', add_to_movielist_movie_path(movie["id"]), method: :post %>
           </div>
           <% if (index + 1) % 5 == 0 %>
             <div class="w-100"></div>

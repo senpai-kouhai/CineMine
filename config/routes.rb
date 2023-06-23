@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :show] do
       resources :likes, only: [:create, :destroy], module: :reviews
     end
+    member do
+      post 'add_to_movielist'
+      delete 'remove_from_movielist'
+    end
     collection do
       get 'search'
     end
@@ -15,6 +19,7 @@ Rails.application.routes.draw do
     collection do
       get 'userhome'
       get 'movielist'
+      get 'likes'
     end
   end
 
