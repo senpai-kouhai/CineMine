@@ -1,2 +1,51 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CineMine</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="text-center">
+      <h1 class="text-dark">ようこそ<%= link_to "CineMine", homes_about_path, class: "text-dark link-style" %>へ</h1>
+      <div class="link-section">
+        <%= link_to "ログイン", new_user_session_path, class: "text-dark link-style" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "text-dark link-style" %>
+        <a href="#" class="text-secondary link-style">ゲストログイン</a>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #4682B4;
+    }
+    h1 {
+      font-size: 80px;
+      margin-bottom: 50px;
+    }
+    h1 .link-style {
+      font-size: 80px;
+    }
+    .link-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 150px;
+    }
+    .link-style {
+      font-size: 25px;
+      text-decoration: none;
+    }
+  </style>
+</html>
