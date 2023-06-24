@@ -1,22 +1,28 @@
-<% @reviews.each do |review| %>
-  <%= link_to movie_review_path(review.movie, review), class: "text-decoration-none text-dark" do %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <% if review.movie.poster_path %>
-          <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster" style="height: auto; width: auto; max-height: 300px; max-width: 300px;">
-        <% else %>
-          <p class="card-text">No poster available</p>
-        <% end %>
-        <h5 class="card-title"><%= review.movie.title %>のレビュー</h5>
-        <p class="card-text">ストーリーの評価: <%= review.story_rating %></p>
-        <p class="card-text"><%= review.story_comment %></p>
-        <p class="card-text">キャストの評価: <%= review.cast_rating %></p>
-        <p class="card-text"><%= review.cast_comment %></p>
-        <p class="card-text">音楽の評価: <%= review.music_rating %></p>
-        <p class="card-text"><%= review.music_comment %></p>
-        <p class="card-text">演出＆映像の評価: <%= review.direction_rating %></p>
-        <p class="card-text"><%= review.direction_comment %></p>
+<% if @reviews.empty? %>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p style="text-align: center; color: #888; font-size: 1.5em;">まだレビューがありません。レビューを書くか、他のユーザーをフォローしてみましょう！</p>
+  </div>
+<% else %>
+  <% @reviews.each do |review| %>
+    <%= link_to movie_review_path(review.movie, review), class: "text-decoration-none text-dark" do %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <% if review.movie.poster_path %>
+            <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster" style="height: auto; width: auto; max-height: 300px; max-width: 300px;">
+          <% else %>
+            <p class="card-text">No poster available</p>
+          <% end %>
+          <h5 class="card-title"><%= review.movie.title %>のレビュー</h5>
+          <p class="card-text">ストーリーの評価: <%= review.story_rating %></p>
+          <p class="card-text"><%= review.story_comment %></p>
+          <p class="card-text">キャストの評価: <%= review.cast_rating %></p>
+          <p class="card-text"><%= review.cast_comment %></p>
+          <p class="card-text">音楽の評価: <%= review.music_rating %></p>
+          <p class="card-text"><%= review.music_comment %></p>
+          <p class="card-text">演出＆映像の評価: <%= review.direction_rating %></p>
+          <p class="card-text"><%= review.direction_comment %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

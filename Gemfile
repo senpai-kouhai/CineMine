@@ -66,3 +66,5 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+gem "font-awesome-sass", "~> 6.4.0"

@@ -14,7 +14,7 @@
     <div class="container h-100 d-flex align-items-center justify-content-center">
       <div class="jumbotron bg-transparent">
         <p class="lead text-white text-center ">
-          <span style="font-size:80px;">CineMine</span>とは<br>
+          <%= link_to "CineMine", homes_top_path, style: "font-size:80px; color: white; text-decoration: none;" %>とは<br>
           ユーザーが自身の好きな映画のレビューを投稿し公開できる映画のレビューサイトです！<br>
 
           世の中には様々な映画があり、いざ映画を観ようと思ってもどれもおもしろそうで悩んでしまう。そんなことありますよね？<br>
@@ -23,13 +23,18 @@
           ネタバレ防止機能もあるので、ネタバレが苦手な方でも安心してご利用いただけます。<br>
           また、各ユーザー専用の視聴リストを作成することも可能なので、ランキング一覧から気になった映画をリストアップして後で楽しんじゃいましょう！
         </p>
+        <div style="position: relative;">
+          <p style="position: absolute; bottom: 10; right: 0;">
+            <%= link_to "ホームへ", homes_top_path, style: "color: white;" %>
+          </p>
+        </div>
       </div>
     </div>
   </body>
 
   <style>
     body {
-      background-image: url('/assets/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner.jpg');
+      background-image: url(/assets/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       height: 100vh;
