@@ -53,3 +53,10 @@
   bottom: 0;
   right: 0;
 }
+
+.nav-item.active .nav-link {
+  color: white;
+}
+.nav-item.active .nav-link i {
+  color: white;
+}

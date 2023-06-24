@@ -1,26 +1,36 @@
-<h1>Popular Movies</h1>
+<h1 class="text-center text-dark my-4">人気映画一覧</h1>
 
-<div class="container">
+<div class="container-fluid px-lg-5">
   <div class="row">
     <!--検索バー↓-->
-    <div class="col-lg-3">
-      <h1>Search for a Movie</h1>
-        <%= form_with(url: search_movies_path, method: :get, local: true) do %>
-          <%= label_tag :keyword, 'Keyword' %>
-          <%= text_field_tag :keyword %>
+    <div class="col-lg-3 bg-light text-dark rounded p-3">
+      <h2>映画検索</h2>
+      <%= form_with(url: search_movies_path, method: :get, local: true, html: { class: "mt-4" }) do %>
+        <%= label_tag :keyword, 'キーワード', class: 'form-label' %>
+        <div class="input-clearable" id="keyword_field_container">
+          <%= text_field_tag :keyword, nil, class: 'form-control', id: 'keyword_field' %>
+          <span id="clear_keyword" class="clearable">×</span>
+        </div>
 
-          <%= label_tag :genre, 'Genre' %>
-          <%= select_tag :genre, options_for_select([['', nil]] + @genres.map { |g| [g['name'], g['id']] }) %>
-
-          <%= submit_tag 'Search' %>
-        <% end %>
+        <%= label_tag :genre, 'ジャンル', class: 'form-label mt-3' %>
+        <div class="d-flex flex-wrap justify-content-between mb-3">
+          <% @genres.each do |genre| %>
+            <label class="btn btn-outline-dark m-1" style="flex: 1 0 auto;">
+              <%= radio_button_tag :genre, genre['id'], false, class: 'form-check-input genre-radio', id: "genre_#{genre['id']}" %>
+              <%= genre['name'] %>
+            </label>
+          <% end %>
+        </div>
+        <button type="button" class="btn btn-dark mt-3" onclick="uncheckAll()">選択解除</button>
+        <%= submit_tag '検索', class: 'btn btn-dark mt-3' %>
+      <% end %>
     </div>
 
     <!--映画一覧↓-->
     <div class="col-lg-9">
       <div class="row">
         <% @movies.each_with_index do |movie, index| %>
-          <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
               <div class="card">
                 <% if movie["poster_path"] %>
@@ -31,12 +41,12 @@
                   </div>
                 <% end %>
                 <div class="card-body">
-                  <h5 class="card-title"><%= movie["title"] %></h5>
+                  <h5 class="card-title text-truncate"><%= movie["title"] %></h5>
                 </div>
               </div>
             <% end %>
             <!-- Add to Movielist Button -->
-            <%= button_to 'Add to Movielist', add_to_movielist_movie_path(movie["id"]), method: :post %>
+            <%= button_to 'Add to Movielist', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
           </div>
           <% if (index + 1) % 5 == 0 %>
             <div class="w-100"></div>
@@ -54,12 +64,52 @@
 <!--一つの検索要素を使用中は他の検索欄が無効化↓-->
 <script>
 $(document).ready(function() {
-  $('input:not([type="submit"]), select').on('input', function() {
+  $('#keyword_field').on('input', function() {
     if ($(this).val()) {
-      $('input:not([type="submit"]), select').not(this).prop('disabled', true).val('');
+      $('.genre-radio').prop('disabled', true);
+      uncheckAll();
     } else {
-      $('input:not([type="submit"]), select').prop('disabled', false);
+      $('.genre-radio').prop('disabled', false);
+    }
+  });
+
+  $('.genre-radio').on('change', function() {
+    if (this.checked) {
+      $('#keyword_field').prop('disabled', true);
+    } else {
+      $('#keyword_field').prop('disabled', false);
     }
   });
 });
+
+function uncheckAll() {
+  let radios = document.getElementsByClassName('genre-radio');
+  for(let i = 0, length = radios.length; i < length; i++) {
+    radios[i].checked = false;
+    radios[i].parentNode.classList.remove('active');
+  }
+  $('#keyword_field').prop('disabled', false);
+}
+
+$(document).ready(function() {
+  $('#clear_keyword').on('click', function() {
+    $('#keyword_field').val('');
+    $('.genre-radio').prop('disabled', false);
+    uncheckAll();
+  });
+});
 </script>
+
+<style>
+.input-clearable {
+  position: relative;
+}
+
+.clearable {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+</style>
