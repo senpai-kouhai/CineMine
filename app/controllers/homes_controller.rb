@@ -4,5 +4,6 @@ class HomesController < ApplicationController
   end
 
   def about
+    render layout: false
   end
 end

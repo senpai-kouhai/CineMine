@@ -12,10 +12,10 @@
 
   <body>
     <div class="text-center">
-      <h1 class="text-dark">ようこそ<%= link_to "CineMine", homes_about_path, class: "text-dark link-style" %>へ</h1>
+      <p class="title text-white">ようこそ<%= link_to "CineMine", homes_about_path, class: "text-white link-style" %>へ</p>
       <div class="link-section">
-        <%= link_to "ログイン", new_user_session_path, class: "text-dark link-style" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "text-dark link-style" %>
+        <%= link_to "ログイン", new_user_session_path, class: "text-black-50 link-style" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "text-black-50 link-style" %>
         <a href="#" class="text-secondary link-style">ゲストログイン</a>
       </div>
     </div>
@@ -27,13 +27,16 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #4682B4;
+      background-image: url(assets/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
     }
-    h1 {
+    .title {
       font-size: 80px;
       margin-bottom: 50px;
+      font-weight: 300;
     }
-    h1 .link-style {
+    .title .link-style {
       font-size: 80px;
     }
     .link-section {

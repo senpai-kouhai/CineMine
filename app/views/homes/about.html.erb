@@ -1,2 +1,41 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CineMine</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+      <div class="jumbotron bg-transparent">
+        <p class="lead text-white text-center ">
+          <span style="font-size:80px;">CineMine</span>とは<br>
+          ユーザーが自身の好きな映画のレビューを投稿し公開できる映画のレビューサイトです！<br>
+
+          世の中には様々な映画があり、いざ映画を観ようと思ってもどれもおもしろそうで悩んでしまう。そんなことありますよね？<br>
+          このサイトはそんな時に使ってほしい、世に公開されている多種多様な映画を実際に観た人の声が聞けるサイトです！<br>
+          ユーザー同士でフォローし合うことも可能なので、家族や友人などと映画のことをシェアすることもできます！<br>
+          ネタバレ防止機能もあるので、ネタバレが苦手な方でも安心してご利用いただけます。<br>
+          また、各ユーザー専用の視聴リストを作成することも可能なので、ランキング一覧から気になった映画をリストアップして後で楽しんじゃいましょう！
+        </p>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    body {
+      background-image: url('/assets/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  </style>
+</html>
