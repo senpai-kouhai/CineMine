@@ -1,17 +1,8 @@
-<h1>ユーザー詳細</h1>
-
-<p>
-  <strong>ユーザーID:</strong>
-  <%= @user.id %>
+<p style="font-size: 18px;">
+  <strong>ユーザー名:</strong> <%= @user.username %>
 </p>
 
-<p>
-  <strong>ユーザー名:</strong>
-  <%= @user.username %>
-</p>
-
-<!--フォローボタン↓-->
-<div id="follow_form">
+<div id="follow_form" style="margin-bottom: 20px;">
   <% if current_user.following?(@user) %>
     <%= render 'users/unfollow' %>
   <% else %>
@@ -19,27 +10,75 @@
   <% end %>
 </div>
 
-<h2>レビュー一覧</h2>
 
-<% @reviews.each do |review| %>
-  <%= link_to movie_review_path(review.movie, review), class: "text-decoration-none text-dark" do %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <% if review.movie.poster_path %>
-          <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster" style="height: auto; width: auto; max-height: 300px; max-width: 300px;">
-        <% else %>
-          <p class="card-text">No poster available</p>
-        <% end %>
-        <h5 class="card-title"><%= review.movie.title %>のレビュー</h5>
-        <p class="card-text">ストーリーの評価: <%= review.story_rating %></p>
-        <p class="card-text"><%= review.story_comment %></p>
-        <p class="card-text">キャストの評価: <%= review.cast_rating %></p>
-        <p class="card-text"><%= review.cast_comment %></p>
-        <p class="card-text">音楽の評価: <%= review.music_rating %></p>
-        <p class="card-text"><%= review.music_comment %></p>
-        <p class="card-text">演出＆映像の評価: <%= review.direction_rating %></p>
-        <p class="card-text"><%= review.direction_comment %></p>
+<div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+  <% @reviews.each do |review| %>
+    <%= link_to movie_review_path(review.movie, review), class: "text-decoration-none text-dark" do %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <% if review.movie.poster_path %>
+            <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster">
+          <% else %>
+            <p class="card-text">No poster available</p>
+          <% end %>
+          <div>
+            <h5 class="card-title"><%= review.movie.title %></h5>
+            <p class="card-text"><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
+            <p class="card-text"><%= review.story_comment %></p>
+            <p class="card-text"><strong>キャストの評価: <%= review.cast_rating %></strong></p>
+            <p class="card-text"><%= review.cast_comment %></p>
+            <p class="card-text"><strong>音楽の評価: <%= review.music_rating %></strong></p>
+            <p class="card-text"><%= review.music_comment %></p>
+            <p class="card-text"><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
+            <p class="card-text"><%= review.direction_comment %></p>
+          </div>
+        </div>
+        <div class="card-footer text-muted" style="font-size: 12px; text-align: right;">
+          <%= review.updated_at.strftime("%m月%d日 %H:%M") %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<style>
+.card {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.card-img-top {
+  height: auto;
+  width: auto;
+  max-height: 300px;
+  max-width: 300px;
+  margin-right: 20px;
+}
+
+.text-dark {
+  color: #343a40 !important;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+</style>

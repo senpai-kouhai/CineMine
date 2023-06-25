@@ -52,11 +52,13 @@ class MoviesController < ApplicationController
 
   def add_to_movielist
     current_user.add_to_movielist(params[:id])
+    flash[:notice] = "視聴リストに追加しました"
     redirect_to movie_path(params[:id])
   end
 
   def remove_from_movielist
     current_user.remove_from_movielist(params[:id])
+    flash[:notice] = "視聴リストから削除しました"
     redirect_to movie_path(params[:id])
   end
 end
