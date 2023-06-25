@@ -1,32 +1,37 @@
-<h1 class="text-center text-dark my-4">視聴リスト</h1>
-
-<div class="mx-auto">
-  <div class="row justify-content-center">
-    <% @movies.each_with_index do |movie, index| %>
-      <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
-        <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
-          <div class="card bg-light">
-            <% if movie["poster_path"] %>
-              <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
-            <% else %>
-              <div class="card-body">
-                <p class="card-text">No poster available</p>
-              </div>
-            <% end %>
-            <div class="card-body">
-              <h5 class="card-title text-truncate"><%= movie["title"] %></h5>
-            </div>
-          </div>
-        <% end %>
-        <!-- Remove from Movielist Button -->
-        <%= button_to '視聴リストから削除する', remove_from_movielist_movie_path(movie["id"]), method: :delete, class: 'btn btn-outline-dark mt-3 w-100' %>
-      </div>
-      <% if (index + 1) % 5 == 0 %>
-        <div class="w-100"></div>
-      <% end %>
-    <% end %>
+<% if @movies.empty? %>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p style="text-align: center; color: #888; font-size: 1.5em;">視聴リストには何もありません</p>
   </div>
-</div>
+<% else %>
+  <h1 class="text-center text-dark my-4">視聴リスト</h1>
+  <div class="mx-auto">
+    <div class="row justify-content-center">
+      <% @movies.each_with_index do |movie, index| %>
+        <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+          <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
+            <div class="card bg-light">
+              <% if movie["poster_path"] %>
+                <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+              <% else %>
+                <div class="card-body">
+                  <p class="card-text">No poster available</p>
+                </div>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title text-truncate"><%= movie["title"] %></h5>
+              </div>
+            </div>
+          <% end %>
+          <!-- Remove from Movielist Button -->
+          <%= button_to '視聴リストから削除する', remove_from_movielist_movie_path(movie["id"]), method: :delete, class: 'btn btn-outline-dark mt-3 w-100' %>
+        </div>
+        <% if (index + 1) % 5 == 0 %>
+          <div class="w-100"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 
 <style>

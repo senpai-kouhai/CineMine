@@ -15,7 +15,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id])
+    @review = Review.includes(:movie).find(params[:id])
+    @comment = Comment.new
   end
 
     def index

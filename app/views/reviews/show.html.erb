@@ -39,6 +39,37 @@
   </div>
 </div>
 
+<% @review.comments.each do |comment| %>
+  <div class="d-flex justify-content-center">
+    <div class="comment">
+      <div class="comment-header">
+        <strong><%= comment.user.username %></strong>
+        <% if user_signed_in? && comment.user_id == current_user.id %>
+          <%= link_to 'Delete', movie_review_comment_path(@review.movie, @review, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-comment' %>
+        <% end %>
+      </div>
+      <div class="comment-body">
+        <%= comment.comment %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+<% if user_signed_in? %>
+  <div class="d-flex justify-content-center">
+    <%= form_with(model: [ @review.movie, @review, @review.comments.build ], local: true, class: "comment-form") do |form| %>
+      <div class="form-row">
+        <%= form.label :comment, "コメント作成" %>
+        <%= form.text_area :comment, class: "form-control" %>
+      </div>
+      <div class="form-row">
+        <%= form.submit "コメントする", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <style>
   body {
@@ -115,4 +146,66 @@
   .mt-4 {
     margin-top: 4px;
   }
+
+.comment-form {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 5px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 5px;
+  box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2);
+  padding: 10px;
+}
+
+.btn-dark {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  background-color: #343a40;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+}
+
+.btn-dark:hover {
+  background-color: #1a1a1a;
+}
+
+.comment {
+  width: 60%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.comment-header strong {
+  font-weight: bold;
+}
+
+.delete-comment {
+  color: red;
+  font-size: 12px;
+}
+
+.comment-body {
+  margin-left: 20px;
+}
 </style>
