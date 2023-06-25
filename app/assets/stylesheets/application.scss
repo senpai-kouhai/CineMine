@@ -48,15 +48,13 @@
   color: #999;
 }
 
-#review-button {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
 .nav-item.active .nav-link {
   color: white;
 }
 .nav-item.active .nav-link i {
   color: white;
+}
+
+.review-link {
+  text-decoration: none;
 }

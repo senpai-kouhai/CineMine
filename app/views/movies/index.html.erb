@@ -46,7 +46,7 @@
               </div>
             <% end %>
             <!-- Add to Movielist Button -->
-            <%= button_to 'Add to Movielist', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+            <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
           </div>
           <% if (index + 1) % 5 == 0 %>
             <div class="w-100"></div>
@@ -111,5 +111,13 @@ $(document).ready(function() {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.card {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bg-light {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
 }
 </style>

@@ -1,8 +1,111 @@
-<h1>Movie#show</h1>
+<style>
+  .container {
+    max-width: 1400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  h1, h2 {
+    color: #343a40;
+    margin-bottom: 100px;
+  }
+  p {
+    color: #6c757d;
+    margin-top: 0px;
+  }
+  .img-fluid {
+    border-radius: 5px;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+  }
+  .content {
+    padding-left: 40px;
+  }
+
+  #review-button {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+  }
+
+  #review-button:hover {
+    background-color: #1a1a1a;
+  }
+
+  .review-form {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-row {
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+    padding: 10px;
+  }
+
+  .btn-dark {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+  }
+
+  .btn-dark:hover {
+    background-color: #1a1a1a;
+  }
+
+  .review-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  .review {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .review h3 {
+    color: #343a40;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .review p {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+</style>
+
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row align-items-center">
+    <div class="col-md-3">
       <% if @movie['poster_path'] %>
         <img src="https://image.tmdb.org/t/p/w500<%= @movie['poster_path'] %>" alt="<%= @movie['title'] %>" class="img-fluid">
       <% else %>
@@ -10,66 +113,108 @@
       <% end %>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-9 content">
       <h2><%= @movie['title'] %></h2>
       <p><%= @movie['overview'] %></p>
-      <p>公開日: <%= @movie['release_date'] %></p>
     </div>
   </div>
 </div>
 
-<button id="review-button" onclick="toggleForm()">この映画のレビューを書く</button>
+<button id="review-button" onclick="toggleForm()" class="btn btn-dark btn-lg">この映画のレビューを書く</button>
+
 
 <!--レビューフォーム↓-->
-<%= form_with model: [ @movie, @movie.reviews.build ], local: true do |f| %>
+<%= form_with model: [ @movie, @movie.reviews.build ], local: true, class: 'review-form d-flex justify-content-center' do |f| %>
   <div id="review-form" style="display: none;">
-    <%= f.label :story_rating, 'ストーリーの評価' %>
-    <%= f.number_field :story_rating, in: 1..5 %>
-    <%= f.label :story_comment, 'ストーリーのコメント' %>
-    <%= f.text_area :story_comment %>
-
-    <%= f.label :cast_rating, 'キャストの評価' %>
-    <%= f.number_field :cast_rating, in: 1..5 %>
-    <%= f.label :cast_comment, 'キャストのコメント' %>
-    <%= f.text_area :cast_comment %>
-
-    <%= f.label :music_rating, '音楽の評価' %>
-    <%= f.number_field :music_rating, in: 1..5 %>
-    <%= f.label :music_comment, '音楽のコメント' %>
-    <%= f.text_area :music_comment %>
-
-    <%= f.label :direction_rating, '演出＆映像の評価' %>
-    <%= f.number_field :direction_rating, in: 1..5 %>
-    <%= f.label :direction_comment, '演出＆映像コメント' %>
-    <%= f.text_area :direction_comment %>
-
-    <%= f.submit 'レビューを投稿' %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :story_rating, 'ストーリーの評価' %>
+          <%= f.number_field :story_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#story-comment")' %>
+        </div>
+        <div class="form-group" id="story-comment" style="display: none;">
+          <%= f.label :story_comment, 'ストーリーのコメント' %>
+          <%= f.text_area :story_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :cast_rating, 'キャストの評価' %>
+          <%= f.number_field :cast_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#cast-comment")' %>
+        </div>
+        <div class="form-group" id="cast-comment" style="display: none;">
+          <%= f.label :cast_comment, 'キャストのコメント' %>
+          <%= f.text_area :cast_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :music_rating, '音楽の評価' %>
+          <%= f.number_field :music_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#music-comment")' %>
+        </div>
+        <div class="form-group" id="music-comment" style="display: none;">
+          <%= f.label :music_comment, '音楽のコメント' %>
+          <%= f.text_area :music_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :direction_rating, '演出＆映像の評価' %>
+          <%= f.number_field :direction_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#direction-comment")' %>
+        </div>
+        <div class="form-group" id="direction-comment" style="display: none;">
+          <%= f.label :direction_comment, '演出＆映像コメント' %>
+          <%= f.text_area :direction_comment, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <%= f.submit 'レビューを投稿', class: 'btn btn-dark' %>
+    </div>
   </div>
 <% end %>
+
+<div style="margin-top: 250px;"></div>
 
 <!--レビュー一覧↓-->
-<% @reviews.each do |review| %>
-  <div>
-    <h3><%= review.user.id %><%= review.user.username %>さんのレビュー</h3>
-    <p>ストーリーの評価: <%= review.story_rating %></p>
-    <p><%= review.story_comment %></p>
-    <p>キャストの評価: <%= review.cast_rating %></p>
-    <p><%= review.cast_comment %></p>
-    <p>音楽の評価: <%= review.music_rating %></p>
-    <p><%= review.music_comment %></p>
-    <p>演出＆映像の評価: <%= review.direction_rating %></p>
-    <p><%= review.direction_comment %></p>
-  </div>
-<% end %>
+<div class="review-container">
+  <% @reviews.each do |review| %>
+    <%= link_to movie_review_path(review.movie, review), class: "review-link" do %>
+      <div class="review">
+        <h3><%= review.user.username %>さんのレビュー</h3>
+        <p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
+        <p><%= review.story_comment %></p>
+        <p><strong>キャストの評価: <%= review.cast_rating %></strong></p>
+        <p><%= review.cast_comment %></p>
+        <p><strong>音楽の評価: <%= review.music_rating %></strong></p>
+        <p><%= review.music_comment %></p>
+        <p><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
+        <p><%= review.direction_comment %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 <!--同ページ内でのフォームの表示・非表示↓-->
 <script>
-  function toggleForm() {
-    var form = document.getElementById('review-form');
-    if (form.style.display === "none") {
-      form.style.display = "block";
+function toggleForm() {
+  var form = document.getElementById('review-form');
+  var button = document.getElementById('review-button');
+  if (form.style.display === "none") {
+    form.style.display = "block";
+    button.textContent = "閉じる"
+  } else {
+    form.style.display = "none";
+    button.textContent = "この映画のレビューを書く";
+  }
+}
+
+  function toggleCommentField(input) {
+    var commentField = input.closest('.form-group').nextElementSibling;
+    if (input.value !== "") {
+      commentField.style.display = "block";
     } else {
-      form.style.display = "none";
+      commentField.style.display = "none";
     }
   }
 </script>
