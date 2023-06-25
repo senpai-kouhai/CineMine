@@ -52,16 +52,20 @@
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <% end %>
               </li>
-            <% elsif controller_name == 'sessions' %>
+            <% else %>
               <li class="nav-item">
                 <%= link_to new_user_registration_path, class: 'nav-link' do %>
                   新規登録 <i class="fa-solid fa-user-plus"></i>
                 <% end %>
               </li>
-            <% elsif controller_name == 'registrations' %>
               <li class="nav-item">
                 <%= link_to new_user_session_path, class: 'nav-link' do %>
                   ログイン <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to movies_path, class: 'nav-link' do %>
+                   ゲスト <i class="fa-solid fa-users"></i>
                 <% end %>
               </li>
             <% end %>

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reviews, only: [:index]
+
   resources :users, only: [:show, :edit] do
     collection do
       get 'userhome'

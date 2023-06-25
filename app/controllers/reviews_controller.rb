@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @movie = Movie.find(params[:movie_id])
@@ -16,6 +17,14 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
   end
+
+    def index
+      if params[:search].blank?
+        @reviews = Review.all
+      else
+        @reviews = Review.search(params[:search])
+      end
+    end
 
   private
 

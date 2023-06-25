@@ -24,6 +24,17 @@
         <button type="button" class="btn btn-dark mt-3" onclick="uncheckAll()">選択解除</button>
         <%= submit_tag '検索', class: 'btn btn-dark mt-3' %>
       <% end %>
+
+      <div style="margin-top: 80px;"></div>
+
+      <h2>レビュー検索</h2>
+      <%= form_tag reviews_path, method: :get, class: 'mt-4' do %>
+        <div class="input-clearable">
+          <%= text_field_tag :search, params[:search], placeholder: "キーワードを入力してください", class: 'form-control', id: "review_keyword_field" %>
+          <span id="review_clear_keyword" class="clearable" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">×</span>
+        </div>
+        <%= submit_tag "Search", class: 'btn btn-dark mt-3', id: "search_button" %>
+      <% end %>
     </div>
 
     <!--映画一覧↓-->
@@ -46,7 +57,9 @@
               </div>
             <% end %>
             <!-- Add to Movielist Button -->
-            <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+            <% if user_signed_in? %>
+              <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+            <% end %>
           </div>
           <% if (index + 1) % 5 == 0 %>
             <div class="w-100"></div>
@@ -96,6 +109,20 @@ $(document).ready(function() {
     $('#keyword_field').val('');
     $('.genre-radio').prop('disabled', false);
     uncheckAll();
+  });
+});
+
+$(document).ready(function() {
+  $('#search_button').on('click', function(event) {
+    if (!$('#review_keyword_field').val()) {
+      event.preventDefault();
+    }
+  });
+
+  $('#review_clear_keyword').on('click', function() {
+    $('#review_keyword_field').val('');
+    $('.genre-radio').prop('disabled', false);
+    uncheckAllReview();
   });
 });
 </script>

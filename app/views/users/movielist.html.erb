@@ -19,7 +19,7 @@
           </div>
         <% end %>
         <!-- Remove from Movielist Button -->
-        <%= button_to 'Remove from Movielist', remove_from_movielist_movie_path(movie["id"]), method: :delete, class: 'btn btn-outline-dark mt-3 w-100' %>
+        <%= button_to '視聴リストから削除する', remove_from_movielist_movie_path(movie["id"]), method: :delete, class: 'btn btn-outline-dark mt-3 w-100' %>
       </div>
       <% if (index + 1) % 5 == 0 %>
         <div class="w-100"></div>

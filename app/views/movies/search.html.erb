@@ -19,7 +19,9 @@
           </div>
         <% end %>
         <!-- Add to Movielist Button -->
-        <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+        <% if user_signed_in? %>
+          <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+        <% end %>
       </div>
       <% if (index + 1) % 5 == 0 %>
         <div class="w-100"></div>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def userhome
     @reviews = Review.where(user_id: [current_user.id, *current_user.following.ids])
                      .order(created_at: :desc)

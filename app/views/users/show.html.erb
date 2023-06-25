@@ -3,10 +3,12 @@
 </p>
 
 <div id="follow_form" style="margin-bottom: 20px;">
-  <% if current_user.following?(@user) %>
-    <%= render 'users/unfollow' %>
-  <% else %>
-    <%= render 'users/follow' %>
+  <% unless current_user == @user %>
+    <% if current_user.following?(@user) %>
+      <%= render 'users/unfollow' %>
+    <% else %>
+      <%= render 'users/follow' %>
+    <% end %>
   <% end %>
 </div>
 

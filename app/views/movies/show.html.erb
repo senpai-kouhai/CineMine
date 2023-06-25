@@ -178,19 +178,23 @@
 
 <!--レビュー一覧↓-->
 <div class="review-container">
-  <% @reviews.each do |review| %>
-    <%= link_to movie_review_path(review.movie, review), class: "review-link" do %>
-      <div class="review">
-        <h3><%= review.user.username %>さんのレビュー</h3>
-        <p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
-        <p><%= review.story_comment %></p>
-        <p><strong>キャストの評価: <%= review.cast_rating %></strong></p>
-        <p><%= review.cast_comment %></p>
-        <p><strong>音楽の評価: <%= review.music_rating %></strong></p>
-        <p><%= review.music_comment %></p>
-        <p><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
-        <p><%= review.direction_comment %></p>
-      </div>
+  <% if @reviews.empty? %>
+    <p style="text-align: center; color: #888; font-size: 1.5em;">この映画のレビューはまだありません</p>
+  <% else %>
+    <% @reviews.each do |review| %>
+      <%= link_to movie_review_path(review.movie, review), class: "review-link" do %>
+        <div class="review">
+          <h3><%= review.user.username %>さんのレビュー</h3>
+          <p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
+          <p><%= review.story_comment %></p>
+          <p><strong>キャストの評価: <%= review.cast_rating %></strong></p>
+          <p><%= review.cast_comment %></p>
+          <p><strong>音楽の評価: <%= review.music_rating %></strong></p>
+          <p><%= review.music_comment %></p>
+          <p><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
+          <p><%= review.direction_comment %></p>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
