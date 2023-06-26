@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_25_142511) do
+ActiveRecord::Schema.define(version: 2023_06_26_072617) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -71,6 +71,10 @@ ActiveRecord::Schema.define(version: 2023_06_25_142511) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "story_spoiler", default: false
+    t.boolean "cast_spoiler", default: false
+    t.boolean "music_spoiler", default: false
+    t.boolean "direction_spoiler", default: false
   end
 
   create_table "users", force: :cascade do |t|
