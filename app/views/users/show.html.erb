@@ -1,15 +1,33 @@
-<p style="font-size: 18px;">
-  <strong>ユーザー名:</strong> <%= @user.username %>
-</p>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <div class="user-info" style="text-align: center;">
+    <div class="profile-image">
+      <% if @user.profile_image.attached? %>
+        <%= image_tag(@user.profile_image, class: "img-thumbnail") %>
+      <% else %>
+        <%= image_tag('popcorn.jpg', class: "img-thumbnail") %>
+      <% end %>
+    </div>
+    <p style="font-size: 25px;">
+      <strong><%= @user.username %></strong>
+    </p>
 
-<div id="follow_form" style="margin-bottom: 20px;">
-  <% unless current_user == @user %>
-    <% if current_user.following?(@user) %>
-      <%= render 'users/unfollow' %>
-    <% else %>
-      <%= render 'users/follow' %>
-    <% end %>
-  <% end %>
+    <p><%= @user.introduction %></p>
+
+
+    <p>Following: <span id="following-count"><%= @user.following.count %></span></p>
+    <p>Followers: <span id="followers-count"><%= @user.followers.count %></span></p>
+
+    <div id="follow_form" style="margin-bottom: 20px;">
+      <% unless current_user == @user %>
+        <% if current_user.following?(@user) %>
+          <%= render 'users/unfollow' %>
+        <% else %>
+          <%= render 'users/follow' %>
+        <% end %>
+      <% end %>
+    </div>
+    <a href="<%= edit_user_path %>" class="btn btn-primary btn-custom btn-sm">プロフィール編集</a>
+  </div>
 </div>
 
 
@@ -116,6 +134,34 @@
 
 .spoiler {
   cursor: pointer;
+}
+
+.btn-custom {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.btn-custom:hover {
+  background-color: #555;
+  border-color: #555;
+  color: #fff;
+}
+
+.btn-custom:focus {
+  background-color: #555;
+  border-color: #555;
+  color: #fff;
+  box-shadow: none;
+}
+
+.img-thumbnail {
+  width: 200px;
+  height: auto;
 }
 </style>
 

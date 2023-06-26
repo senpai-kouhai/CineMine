@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   has_many :comments, dependent: :destroy
-
+  has_one_attached :profile_image, dependent: :destroy
 
   # 管理者かどうかを判断するメソッド
   def admin?

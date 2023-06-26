@@ -79,7 +79,7 @@
     padding: 20px;
   }
 
-  .review {
+  .card {
     background-color: #ffffff;
     border-radius: 5px;
     padding: 15px;
@@ -87,14 +87,14 @@
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
   }
 
-  .review h3 {
+  .card h3 {
     color: #343a40;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
   }
 
-  .review p {
+  .card p {
     color: #6c757d;
     font-size: 14px;
     margin-bottom: 5px;
@@ -191,8 +191,7 @@
   <% else %>
     <% @reviews.each do |review| %>
       <%= link_to movie_review_path(review.movie, review), class: "review-link" do %>
-        <div class="review">
-          <h3><%= review.user.username %>さんのレビュー</h3>
+        <div class="card">
           <p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
           <p class="<%= 'spoiler' if review.story_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.story_comment %>">
             <% if review.story_spoiler %>
@@ -225,6 +224,15 @@
               <%= review.direction_comment %>
             <% end %>
           </p>
+          <div class="card-footer text-muted" style="font-size: 12px;">
+            <div class="username">
+              <h3><%= link_to review.user.username, user_path(review.user), style: "text-decoration: none; color: inherit;" %></h3>
+            </div>
+            <div class="spacer"></div>
+            <div>
+              <%= review.updated_at.strftime("%m月%d日 %H:%M") %>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>

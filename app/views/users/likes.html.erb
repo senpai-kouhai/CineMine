@@ -8,7 +8,6 @@
         <%= link_to movie_review_path(review.movie, review), class: "text-decoration-none text-dark" do %>
           <div class="card mb-3">
             <div class="card-body">
-              <div class="username"><%= review.user.username %>さんのレビュー</div>
               <% if review.movie.poster_path %>
                 <img src="https://image.tmdb.org/t/p/w500<%= review.movie.poster_path %>" class="card-img-top" alt="<%= review.movie.title %> poster">
               <% else %>
@@ -50,8 +49,21 @@
                 </p>
               </div>
             </div>
-            <div class="card-footer text-muted" style="font-size: 12px; text-align: right;">
-              <%= review.updated_at.strftime("%m月%d日 %H:%M") %>
+            <div class="card-footer text-muted" style="font-size: 12px;">
+              <div class="username">
+                <%= link_to user_path(review.user) do %>
+                  <% if review.user.profile_image.attached? %>
+                    <%= image_tag(review.user.profile_image, class: "img-thumbnail") %>
+                  <% else %>
+                    <%= image_tag('popcorn.jpg', class: "img-thumbnail") %>
+                  <% end %>
+                  <%= review.user.username %>
+                <% end %>
+              </div>
+              <div class="spacer"></div>
+              <div>
+                <%= review.updated_at.strftime("%m月%d日 %H:%M") %>
+              </div>
             </div>
           </div>
         <% end %>
@@ -100,19 +112,27 @@
   text-decoration: none !important;
 }
 
-.username {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
 .spoiler {
   cursor: pointer;
+}
+
+.img-thumbnail {
+  width: 50px;
+  height: auto;
+}
+
+.username a {
+  text-decoration: none;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 </style>
 

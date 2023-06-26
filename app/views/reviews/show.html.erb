@@ -1,5 +1,16 @@
 <div class="review-container">
-  <h1><%= @review.user.username %>さんの<%= @review.movie.title %>のレビュー</h1>
+  <div class="username" style="display: flex; justify-content: center; align-items: center;">
+    <%= link_to user_path(@review.user), style: "text-decoration: none; color: inherit;" do %>
+      <% if @review.user.profile_image.attached? %>
+        <%= image_tag(@review.user.profile_image, class: "img-thumbnail") %>
+      <% else %>
+        <%= image_tag('popcorn.jpg', class: "img-thumbnail") %>
+      <% end %>
+      <p style="text-align: center; margin: 0;"><strong><%= @review.user.username %></strong></p>
+    <% end %>
+  </div>
+
+  <h1><%= @review.movie.title %></h1>
 
   <div class="movie-poster">
     <% if @review.movie.poster_path %>
@@ -74,7 +85,7 @@
   <div class="d-flex justify-content-center">
     <div class="comment">
       <div class="comment-header">
-        <strong><%= comment.user.username %></strong>
+        <strong><%= link_to comment.user.username, user_path(comment.user), style: "text-decoration: none; color: inherit;" %></strong>
         <% if user_signed_in? && comment.user_id == current_user.id %>
           <%= link_to 'Delete', movie_review_comment_path(@review.movie, @review, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-comment' %>
         <% end %>
@@ -108,15 +119,16 @@
     font-family: Arial, sans-serif;
   }
 
-  .review-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
+.review-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  padding-top: 20px; /* Adjust as necessary */
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
 
   h1 {
     color: #343a40;
@@ -272,6 +284,22 @@
 
 .spoiler {
   cursor: pointer;
+}
+
+.img-thumbnail {
+  width: 100px;
+  height: auto;
+}
+
+.username a {
+  text-decoration: none;
+}
+
+.username {
+  position: absolute;
+  top: 30px; /* Adjust as necessary */
+  left: 30px; /* Adjust as necessary */
+  /* Rest of your CSS */
 }
 </style>
 
