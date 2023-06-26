@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   resources :movies, only: [:index, :show] do
-    resources :reviews, only: [:create, :show] do
+    resources :reviews, only: [:create, :show, :edit, :destroy, :update] do
       resources :likes, only: [:create, :destroy], module: :reviews
       resources :comments, only: [:create, :destroy, :edit]
     end

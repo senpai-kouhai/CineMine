@@ -22,6 +22,13 @@
     <p><%= @review.direction_comment %></p>
   </div>
 
+  <% if @review.user == current_user %>
+    <div class="review-actions">
+      <%= link_to '編集', edit_movie_review_path(@review.movie, @review), class: 'edit-link' %>
+      <%= link_to '削除', movie_review_path(@review.movie, @review), method: :delete, data: { confirm: 'レビューを削除してもよろしいですか？' }, class: 'delete-link' %>
+    </div>
+  <% end %>
+
   <div class="text-right mt-4">
     <div id="like-button">
       <% like = current_user.likes.find_by(review_id: @review.id) %>
@@ -84,6 +91,7 @@
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
   }
 
   h1 {
@@ -207,5 +215,34 @@
 
 .comment-body {
   margin-left: 20px;
+}
+
+.review-actions {
+  position: absolute;
+  bottom: 45px;
+  left: 10px;
+}
+
+.edit-link,
+.delete-link {
+  font-weight: bold;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.edit-link {
+  color: #BBBBBB;
+}
+
+.edit-link:hover {
+  color: #00CC00;
+}
+
+.delete-link {
+  color: #BBBBBB;
+}
+
+.delete-link:hover {
+  color: #BB0000;
 }
 </style>

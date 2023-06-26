@@ -19,13 +19,35 @@ class ReviewsController < ApplicationController
     @comment = Comment.new
   end
 
-    def index
-      if params[:search].blank?
-        @reviews = Review.all
-      else
-        @reviews = Review.search(params[:search])
-      end
+  def index
+    if params[:search].blank?
+      @reviews = Review.all
+    else
+      @reviews = Review.search(params[:search])
     end
+  end
+
+  def edit
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to movie_review_path(@review.movie, @review), notice: 'レビューを更新しました。'
+    else
+      flash.now[:error] = 'レビューの更新に失敗しました。'
+      Rails.logger.info @review.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to movies_path, notice: 'レビューを削除しました。'
+  end
 
   private
 

@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
 
   # 管理者かどうかを判断するメソッド
@@ -26,20 +26,20 @@ class User < ApplicationRecord
     active_relationships.find_by(followed_id: other_user.id)
   end
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',
                                   dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed
+  has_many :following, through: :active_relationships, source: :followed, dependent: :destroy
 
   has_many :passive_relationships, class_name: 'Relationship',
                                    foreign_key: 'followed_id',
                                    dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :followers, through: :passive_relationships, source: :follower, dependent: :destroy
 
-  has_many :likes
-  has_many :liked_reviews, through: :likes, source: :review
+  has_many :likes, dependent: :destroy
+  has_many :liked_reviews, through: :likes, source: :review, dependent: :destroy
 
   def like(review)
     likes.create(review_id: review.id)
@@ -59,8 +59,8 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :movie_lists
-  has_many :listed_movies, through: :movie_lists, source: :movie
+  has_many :movie_lists, dependent: :destroy
+  has_many :listed_movies, through: :movie_lists, source: :movie, dependent: :destroy
 
   def add_to_movielist(tmdb_id)
     movie = Movie.find_by(tmdb_id: tmdb_id)

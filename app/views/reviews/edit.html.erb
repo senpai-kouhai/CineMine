@@ -1,0 +1,86 @@
+<%= form_with model: [ @movie, @review ], local: true, class: 'review-form d-flex justify-content-center' do |f| %>
+  <div id="review-form">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :story_rating, 'ストーリーの評価' %>
+          <%= f.number_field :story_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#story-comment")' %>
+        </div>
+        <div class="form-group" id="story-comment">
+          <%= f.label :story_comment, 'ストーリーのコメント' %>
+          <%= f.text_area :story_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :cast_rating, 'キャストの評価' %>
+          <%= f.number_field :cast_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#cast-comment")' %>
+        </div>
+        <div class="form-group" id="cast-comment">
+          <%= f.label :cast_comment, 'キャストのコメント' %>
+          <%= f.text_area :cast_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :music_rating, '音楽の評価' %>
+          <%= f.number_field :music_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#music-comment")' %>
+        </div>
+        <div class="form-group" id="music-comment">
+          <%= f.label :music_comment, '音楽のコメント' %>
+          <%= f.text_area :music_comment, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :direction_rating, '演出＆映像の評価' %>
+          <%= f.number_field :direction_rating, step: 1, min: 0, max: 5, class: 'form-control', oninput: 'toggleCommentField(this, "#direction-comment")' %>
+        </div>
+        <div class="form-group" id="direction-comment">
+          <%= f.label :direction_comment, '演出＆映像コメント' %>
+          <%= f.text_area :direction_comment, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <%= f.submit 'レビューを投稿', class: 'btn btn-dark' %>
+    </div>
+  </div>
+<% end %>
+
+
+<style>
+.review-form {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 5px;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+  padding: 10px;
+}
+
+.btn-dark {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  background-color: #343a40;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+}
+
+.btn-dark:hover {
+  background-color: #1a1a1a;
+}
+</style>
