@@ -4,12 +4,13 @@ class ReviewsController < ApplicationController
   def create
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build(review_params)
-    @review.user = current_user  # ここで、現在のユーザーをレビューの作成者として設定します。
+    @review.user = current_user
     if @review.save
       redirect_to @movie, notice: 'レビューを投稿しました。'
     else
       flash.now[:error] = 'レビューの投稿に失敗しました。'
-      Rails.logger.info @review.errors.full_messages  # レビューのエラーメッセージをログに出力
+      Rails.logger.info @review.errors.full_messages
+      @reviews = @movie.reviews.where.not(id: nil)
       render 'movies/show'
     end
   end

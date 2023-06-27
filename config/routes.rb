@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'userhome'
       get 'movielist'
       get 'likes'
+      get 'search'
     end
   end
 

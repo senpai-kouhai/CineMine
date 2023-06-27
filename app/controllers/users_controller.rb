@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @users = User.where('username LIKE ?', "%#{params[:search]}%")
+    @users = @users.where.not(id: current_user.id)
+  end
+
   private
 
   def user_params

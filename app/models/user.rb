@@ -90,4 +90,12 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end
+
+  def self.search(search)
+    if search
+      where('username LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end

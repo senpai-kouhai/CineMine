@@ -44,6 +44,7 @@
     padding: 20px;
     border-radius: 5px;
     width: 100%;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -253,14 +254,14 @@ function toggleForm() {
   }
 }
 
-  function toggleCommentField(input) {
-    var commentField = input.closest('.form-group').nextElementSibling;
-    if (input.value !== "") {
-      commentField.style.display = "block";
-    } else {
-      commentField.style.display = "none";
-    }
+function toggleCommentField(input) {
+  var commentField = input.closest('.form-group').nextElementSibling;
+  if (input.value !== "") {
+    commentField.style.display = "block";
+  } else {
+    commentField.style.display = "none";
   }
+}
 
 function showSpoiler(event) {
   event.preventDefault();

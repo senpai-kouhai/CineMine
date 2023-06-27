@@ -43,6 +43,11 @@
           <% end %>
         </div>
       </div>
+      <div class="withdrawal-container">
+        <div class="withdrawal-botton">
+           <%= button_to "アカウントを削除する", registration_path(:user), data: { confirm: "アカウントを削除してもよろしいですか？この操作は元に戻すことができません。" }, method: :delete, class: "delete-button btn btn-danger" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -89,5 +94,40 @@
 .img-thumbnail {
   width: 150px;
   height: auto;
+}
+
+.withdrawal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+}
+
+.withdrawal-botton {
+  text-align: center;
+}
+
+.delete-button {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.delete-button:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.delete-button:focus {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
 </style>
