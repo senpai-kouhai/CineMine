@@ -26,7 +26,9 @@
         <% end %>
       <% end %>
     </div>
-    <a href="<%= edit_user_path %>" class="btn btn-primary btn-custom btn-sm">プロフィール編集</a>
+    <% if current_user == @user || current_user.admin? %>
+      <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-primary btn-custom btn-sm" %>
+    <% end %>
   </div>
 </div>
 

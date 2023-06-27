@@ -4,14 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
+  validates :introduction, length: { maximum: 100 }
 
   has_many :comments, dependent: :destroy
   has_one_attached :profile_image, dependent: :destroy
 
   # 管理者かどうかを判断するメソッド
   def admin?
-    admin
+    self.admin
   end
 
   def follow(other_user)

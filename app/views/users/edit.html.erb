@@ -45,7 +45,11 @@
       </div>
       <div class="withdrawal-container">
         <div class="withdrawal-botton">
-           <%= button_to "アカウントを削除する", registration_path(:user), data: { confirm: "アカウントを削除してもよろしいですか？この操作は元に戻すことができません。" }, method: :delete, class: "delete-button btn btn-danger" %>
+          <% if current_user == @user %>
+            <%= button_to "アカウントを削除する", registration_path(:user), data: { confirm: "アカウントを削除してもよろしいですか？この操作は元に戻すことができません。" }, method: :delete, class: "delete-button btn btn-danger" %>
+          <% elsif current_user.admin? %>
+            <%= button_to "このアカウントを削除する", user_path(@user), data: { confirm: "アカウントを削除してもよろしいですか？この操作は元に戻すことができません。" }, method: :delete, class: "delete-button btn btn-danger" %>
+          <% end %>
         </div>
       </div>
     </div>

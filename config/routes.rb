@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:index]
 
-  resources :users, only: [:show, :edit,:update] do
+  resources :users, only: [:show, :edit,:update, :destroy] do
     collection do
       get 'userhome'
       get 'movielist'

@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def create
     @movie = Movie.find(params[:movie_id])
@@ -51,6 +53,18 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def set_review
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def authorize_user
+    unless @review.user == current_user || current_user.admin?
+      flash[:alert] = "あなたにはこのレビューを編集する権限がありません。"
+      redirect_to movie_path(@movie)
+    end
+  end
 
     def review_params
       params.require(:review).permit(:story_rating, :story_comment, :cast_rating, :cast_comment, :music_rating, :music_comment, :direction_rating, :direction_comment, :story_spoiler, :cast_spoiler, :music_spoiler, :direction_spoiler)

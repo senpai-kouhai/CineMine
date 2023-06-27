@@ -8,16 +8,18 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to movie_review_path(@review.movie, @review)
     else
+      flash.now[:error] = 'コメントの投稿に失敗しました。'
       redirect_to movie_review_path(@review.movie, @review)
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.user_id == current_user.id
+    if @comment.user_id == current_user.id || current_user.admin?
       @comment.destroy
       redirect_to movie_review_path(@review.movie, @review)
     else
+      flash.now[:error] = 'コメントの削除に失敗しました。'
       redirect_to movie_review_path(@review.movie, @review)
     end
   end
