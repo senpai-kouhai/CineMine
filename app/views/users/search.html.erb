@@ -1,0 +1,71 @@
+<div class="content-container">
+  <% @users.each do |user| %>
+    <div class="card user-card">
+      <%= link_to user_path(user), class: "user-link" do %>
+        <div class="card-image">
+          <% if user.profile_image.attached? %>
+            <%= image_tag(user.profile_image, class: "user-image img-thumbnail") %>
+          <% else %>
+            <%= image_tag('popcorn.jpg', class: "user-image img-thumbnail") %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= user.username %></h5>
+          <p class="card-text"><%= user.introduction %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-card {
+  width: 300px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.user-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.user-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.user-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+</style>

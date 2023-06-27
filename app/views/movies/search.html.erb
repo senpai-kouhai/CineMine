@@ -1,12 +1,12 @@
-<h1>Movie Search Results</h1>
+<h1 class="text-center text-dark my-4">検索結果一覧</h1>
 
 <div class="mx-auto">
   <div class="row justify-content-center">
     <% @movies.each_with_index do |movie, index| %>
       <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
-        <%= link_to movie_path(movie['id']), class: "text-decoration-none text-dark", style: "text-decoration: none;" do %>
-          <div class="card">
-            <% if movie['poster_path'] %>
+        <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
+          <div class="card bg-light">
+            <% if movie["poster_path"] %>
               <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
             <% else %>
               <div class="card-body">
@@ -14,9 +14,13 @@
               </div>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= movie['title'] %></h5>
+              <h5 class="card-title text-truncate"><%= movie["title"] %></h5>
             </div>
           </div>
+        <% end %>
+        <!-- Add to Movielist Button -->
+        <% if user_signed_in? %>
+          <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
         <% end %>
       </div>
       <% if (index + 1) % 5 == 0 %>
@@ -28,3 +32,25 @@
 
 <!--ページネーション↓-->
 <%= render 'shared/pagination' %>
+
+<style>
+.input-clearable {
+  position: relative;
+}
+
+.clearable {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.card {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bg-light {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+}
+</style>

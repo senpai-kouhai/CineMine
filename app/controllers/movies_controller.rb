@@ -1,6 +1,7 @@
 require 'httparty'
 
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show, :search]
   API_KEY = ENV['TMDB_API_KEY']
 
   def index
@@ -48,5 +49,17 @@ class MoviesController < ApplicationController
 
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.includes(:user).order(created_at: :desc)
+  end
+
+  def add_to_movielist
+    current_user.add_to_movielist(params[:id])
+    flash[:notice] = "視聴リストに追加しました"
+    redirect_to movie_path(params[:id])
+  end
+
+  def remove_from_movielist
+    current_user.remove_from_movielist(params[:id])
+    flash[:notice] = "視聴リストから削除しました"
+    redirect_to movie_path(params[:id])
   end
 end

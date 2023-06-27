@@ -1,24 +1,72 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def create
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build(review_params)
-    @review.user = current_user  # ここで、現在のユーザーをレビューの作成者として設定します。
+    @review.user = current_user
     if @review.save
       redirect_to @movie, notice: 'レビューを投稿しました。'
     else
       flash.now[:error] = 'レビューの投稿に失敗しました。'
-      Rails.logger.info @review.errors.full_messages  # レビューのエラーメッセージをログに出力
+      Rails.logger.info @review.errors.full_messages
+      @reviews = @movie.reviews.where.not(id: nil)
       render 'movies/show'
     end
   end
 
   def show
+    @review = Review.includes(:movie).find(params[:id])
+    @comment = Comment.new
+  end
+
+  def index
+    if params[:search].blank?
+      @reviews = Review.all
+    else
+      @reviews = Review.search(params[:search])
+    end
+  end
+
+  def edit
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to movie_review_path(@review.movie, @review), notice: 'レビューを更新しました。'
+    else
+      flash.now[:error] = 'レビューの更新に失敗しました。'
+      Rails.logger.info @review.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to movies_path, notice: 'レビューを削除しました。'
   end
 
   private
 
+  def set_review
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def authorize_user
+    unless @review.user == current_user || current_user.admin?
+      flash[:alert] = "あなたにはこのレビューを編集する権限がありません。"
+      redirect_to movie_path(@movie)
+    end
+  end
+
     def review_params
-      params.require(:review).permit(:story_rating, :story_comment, :cast_rating, :cast_comment, :music_rating, :music_comment, :direction_rating, :direction_comment)
+      params.require(:review).permit(:story_rating, :story_comment, :cast_rating, :cast_comment, :music_rating, :music_comment, :direction_rating, :direction_comment, :story_spoiler, :cast_spoiler, :music_spoiler, :direction_spoiler)
     end
 end

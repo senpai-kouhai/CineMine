@@ -1,0 +1,4 @@
+document.getElementById('like_count').innerText = '<%= @review.likes.count %> Likes';
+document.getElementById('like-button').innerHTML = '<%= escape_javascript((link_to(movie_review_likes_path(@review.movie, @review, format: :js), method: :post, remote: true) do
+  '<i class="fa-solid fa-heart"></i>'.html_safe
+end)) %>';
