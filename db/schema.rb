@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_26_111136) do
+ActiveRecord::Schema.define(version: 2023_07_06_021235) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2023_06_26_111136) do
     t.boolean "cast_spoiler", default: false
     t.boolean "music_spoiler", default: false
     t.boolean "direction_spoiler", default: false
+    t.float "sentiment_score"
   end
 
   create_table "users", force: :cascade do |t|
