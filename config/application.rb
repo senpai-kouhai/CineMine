@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 
 module CineMine
   class Application < Rails::Application
+    config.eager_load_paths << Rails.root.join('lib')
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
