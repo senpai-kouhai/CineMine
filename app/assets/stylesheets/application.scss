@@ -16,6 +16,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import "font-awesome";
 
+
+// CSS↓
 .pagination {
   display: flex;
   justify-content: center;
@@ -29,7 +31,6 @@
   margin: 0 4px;
   text-decoration: none;
   color: #333;
-//   border-radius: 20px; 検討する
   transition: background-color 0.3s;
 }
 

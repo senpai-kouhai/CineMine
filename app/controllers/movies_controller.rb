@@ -1,50 +1,39 @@
-require 'httparty'
-
 class MoviesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :set_page, only: [:index, :search]
   API_KEY = ENV['TMDB_API_KEY']
 
   def index
-    params[:page] ||= 1
     @genres = MovieGenresService.fetch_genres
+    response = MovieIndexService.fetch_popular_movies(@page)
 
-    response = MovieIndexService.fetch_popular_movies(params[:page].to_i)
-    if response['results'].nil?
-      flash[:alert] = "APIからデータを取得できませんでした。再度お試しください。"
-      redirect_to movies_index_path(page: 1) and return
+    unless response['results']
+      return handle_failed_api_response(movies_index_path(page: 1))
     end
 
-    @movies = response['results']
-    @page = params[:page].to_i
-    @total_pages = response['total_pages']
+    assign_movie_data(response)
   end
 
   def search
-    params[:page] ||= 1
-
-    if params[:genre].present?
-      response = MovieSearchService.search_by_genre(params[:genre], params[:page])
+    response = if params[:genre].present?
+      MovieSearchService.search_by_genre(params[:genre], @page)
     else
-      response = MovieSearchService.search_by_keyword(params[:keyword], params[:page])
+      MovieSearchService.search_by_keyword(params[:keyword], @page)
     end
 
-    @movies = response['results']
-    @page = params[:page].to_i
-    @total_pages = response['total_pages']
-
-    if @movies.nil?
-      flash[:alert] = "APIからデータを取得できませんでした。再度お試しください。"
-      redirect_to search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword]) and return
+    unless response['results']
+      return handle_failed_api_response(search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword]))
     end
+
+    assign_movie_data(response)
   end
 
   def show
     movie_id = params[:id]
     @movie = MovieDetailsService.fetch_movie_details(movie_id)
 
-    if @movie.nil?
-      flash[:alert] = "映画の詳細を取得できませんでした。再度お試しください。"
-      redirect_to movies_path and return
+    unless @movie
+      return handle_failed_api_response(movies_path)
     end
 
     @movie = Movie.find(params[:id])
@@ -61,5 +50,21 @@ class MoviesController < ApplicationController
     current_user.remove_from_movielist(params[:id])
     flash[:notice] = "視聴リストから削除しました"
     redirect_to movie_path(params[:id])
+  end
+
+  private
+
+  def set_page
+    @page = (params[:page] || 1).to_i
+  end
+
+  def assign_movie_data(response)
+    @movies = response['results']
+    @total_pages = response['total_pages']
+  end
+
+  def handle_failed_api_response(redirect_path)
+    flash[:alert] = "APIからデータを取得できませんでした。再度お試しください。"
+    redirect_to redirect_path
   end
 end

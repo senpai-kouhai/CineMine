@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update]
   before_action :ensure_admin, only: :destroy
-
 
   def userhome
     @reviews = Review.where(user_id: [current_user.id, *current_user.following.ids])
@@ -11,12 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @reviews = @user.reviews.order(created_at: :desc)
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
   def movielist
@@ -30,8 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to @user
     else
@@ -44,14 +36,13 @@ class UsersController < ApplicationController
     @users = @users.where.not(id: current_user.id)
   end
 
-    def destroy
-      @user = User.find(params[:id])
-      if @user.destroy
-        redirect_to root_path, notice: 'ユーザーは正常に削除されました。'
-      else
-        redirect_to root_path, alert: 'ユーザーの削除に失敗しました。'
-      end
+  def destroy
+    if @user.destroy
+      redirect_to root_path, notice: 'ユーザーは正常に削除されました。'
+    else
+      redirect_to root_path, alert: 'ユーザーの削除に失敗しました。'
     end
+  end
 
   private
 
@@ -65,7 +56,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
 
   def user_params
     params.require(:user).permit(:username, :email, :introduction, :profile_image)

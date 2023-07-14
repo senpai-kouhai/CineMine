@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def create
@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.includes(:movie).find(params[:id])
     @comment = Comment.new
   end
 
@@ -30,13 +29,9 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-    @movie = Movie.find(params[:movie_id])
-    @review = Review.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to movie_review_path(@review.movie, @review), notice: 'レビューを更新しました。'
     else
@@ -47,7 +42,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
     redirect_to movies_path, notice: 'レビューを削除しました。'
   end
@@ -66,7 +60,7 @@ class ReviewsController < ApplicationController
     end
   end
 
-    def review_params
-      params.require(:review).permit(:story_rating, :story_comment, :cast_rating, :cast_comment, :music_rating, :music_comment, :direction_rating, :direction_comment, :story_spoiler, :cast_spoiler, :music_spoiler, :direction_spoiler)
-    end
+  def review_params
+    params.require(:review).permit(:story_rating, :story_comment, :cast_rating, :cast_comment, :music_rating, :music_comment, :direction_rating, :direction_comment, :story_spoiler, :cast_spoiler, :music_spoiler, :direction_spoiler)
+  end
 end

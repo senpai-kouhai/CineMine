@@ -1,0 +1,44 @@
+<div class="col-lg-3 bg-light text-dark rounded p-3">
+  <h2>映画検索</h2>
+  <%= form_with(url: search_movies_path, method: :get, local: true, html: { class: "mt-4" }) do %>
+    <%= label_tag :keyword, 'キーワード', class: 'form-label' %>
+    <div class="input-clearable" id="keyword_field_container">
+      <%= text_field_tag :keyword, nil, class: 'form-control', id: 'keyword_field' %>
+      <span id="clear_keyword" class="clearable">×</span>
+    </div>
+
+    <%= label_tag :genre, 'ジャンル', class: 'form-label mt-3' %>
+    <div class="d-flex flex-wrap justify-content-between mb-3">
+      <% @genres.each do |genre| %>
+        <label class="btn btn-outline-dark m-1" style="flex: 1 0 auto;">
+          <%= radio_button_tag :genre, genre['id'], false, class: 'form-check-input genre-radio', id: "genre_#{genre['id']}" %>
+          <%= genre['name'] %>
+        </label>
+      <% end %>
+    </div>
+    <button type="button" class="btn btn-dark mt-3" onclick="uncheckAll()">選択解除</button>
+    <%= submit_tag '検索', class: 'btn btn-dark mt-3' %>
+  <% end %>
+
+  <div style="margin-top: 80px;"></div>
+
+  <h2>レビュー検索</h2>
+  <%= form_tag reviews_path, method: :get, class: 'mt-4' do %>
+    <div class="input-clearable">
+      <%= text_field_tag :search, params[:search], placeholder: "キーワードを入力してください", class: 'form-control', id: "review_keyword_field" %>
+      <span id="review_clear_keyword" class="clearable" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">×</span>
+    </div>
+    <%= submit_tag "検索", class: 'btn btn-dark mt-3', id: "search_button" %>
+  <% end %>
+
+  <div style="margin-top: 80px;"></div>
+
+  <div class="search-user-container">
+    <h2 class="search-user-heading">ユーザー検索</h2>
+    <%= form_with url: search_users_path, method: :get, local: true, class: "search-user-form" do |f| %>
+      <%= f.label :search, "Search", class: "search-user-label" %>
+      <%= f.text_field :search, class: "search-user-input" %>
+      <%= f.submit "検索", class: "search-user-button" %>
+    <% end %>
+  </div>
+</div>

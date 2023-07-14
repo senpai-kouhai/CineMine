@@ -1,0 +1,23 @@
+<div class="<%= column_classes %>">
+  <%= link_to movie_path(movie["id"]), class: "card text-decoration-none text-dark" do %>
+    <div class="card bg-light">
+      <% if movie["poster_path"] %>
+        <img src="https://image.tmdb.org/t/p/w500<%= movie['poster_path'] %>" class="card-img-top" alt="<%= movie['title'] %> poster">
+      <% else %>
+        <div class="card-body">
+          <p class="card-text">No poster available</p>
+        </div>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title text-truncate"><%= movie["title"] %></h5>
+      </div>
+    </div>
+  <% end %>
+  <!-- Add to Movielist Button -->
+  <% if user_signed_in? %>
+    <%= button_to '視聴リストに入れる', add_to_movielist_movie_path(movie["id"]), method: :post, class: 'btn btn-outline-dark mt-3 w-100' %>
+  <% end %>
+</div>
+<% if (index + 1) % 5 == 0 %>
+  <div class="w-100"></div>
+<% end %>

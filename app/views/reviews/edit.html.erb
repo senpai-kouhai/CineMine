@@ -9,6 +9,7 @@
         <div class="form-group" id="story-comment">
           <%= f.label :story_comment, 'ストーリーのコメント' %>
           <%= f.text_area :story_comment, class: 'form-control' %>
+          <%= f.check_box :story_spoiler %> このコメントはネタバレを含みます
         </div>
       </div>
       <div class="col-md-12">
@@ -19,6 +20,7 @@
         <div class="form-group" id="cast-comment">
           <%= f.label :cast_comment, 'キャストのコメント' %>
           <%= f.text_area :cast_comment, class: 'form-control' %>
+          <%= f.check_box :cast_spoiler %> このコメントはネタバレを含みます
         </div>
       </div>
       <div class="col-md-12">
@@ -29,6 +31,7 @@
         <div class="form-group" id="music-comment">
           <%= f.label :music_comment, '音楽のコメント' %>
           <%= f.text_area :music_comment, class: 'form-control' %>
+          <%= f.check_box :music_spoiler %> このコメントはネタバレを含みます
         </div>
       </div>
       <div class="col-md-12">
@@ -39,6 +42,7 @@
         <div class="form-group" id="direction-comment">
           <%= f.label :direction_comment, '演出＆映像コメント' %>
           <%= f.text_area :direction_comment, class: 'form-control' %>
+          <%= f.check_box :direction_spoiler %> このコメントはネタバレを含みます
         </div>
       </div>
     </div>
@@ -47,40 +51,3 @@
     </div>
   </div>
 <% end %>
-
-
-<style>
-.review-form {
-  margin-top: 30px;
-  padding: 20px;
-  border-radius: 5px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.form-row {
-  margin-bottom: 20px;
-}
-
-.form-control {
-  border-radius: 5px;
-  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
-  padding: 10px;
-}
-
-.btn-dark {
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  background-color: #343a40;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
-}
-
-.btn-dark:hover {
-  background-color: #1a1a1a;
-}
-</style>
