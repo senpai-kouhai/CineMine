@@ -92,4 +92,60 @@
       <%= yield %>
     </main>
   </body>
+
+  <style>
+    .input-clearable {
+      position: relative;
+    }
+
+    .clearable {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .card {
+      box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .bg-light {
+      box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .review-form {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 5px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border-radius: 5px;
+      box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+      padding: 10px;
+    }
+
+    .btn-dark {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      background-color: #343a40;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+    }
+
+    .btn-dark:hover {
+      background-color: #1a1a1a;
+    }
+  </style>
 </html>
