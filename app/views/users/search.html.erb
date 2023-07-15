@@ -1,20 +1,26 @@
 <div class="content-container">
-  <% @users.each do |user| %>
-    <div class="card user-card">
-      <%= link_to user_path(user), class: "user-link" do %>
-        <div class="card-image">
-          <% if user.profile_image.attached? %>
-            <%= image_tag(user.profile_image, class: "user-image img-thumbnail") %>
-          <% else %>
-            <%= image_tag('popcorn.jpg', class: "user-image img-thumbnail") %>
-          <% end %>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= user.username %></h5>
-          <p class="card-text"><%= user.introduction %></p>
-        </div>
-      <% end %>
-    </div>
+  <% if @users.empty? %>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p style="text-align: center; color: #888; font-size: 1.5em;">検索に一致するユーザーはいません</p>
+  </div>
+  <% else %>
+    <% @users.each do |user| %>
+      <div class="card user-card">
+        <%= link_to user_path(user), class: "user-link" do %>
+          <div class="card-image">
+            <% if user.profile_image.attached? %>
+              <%= image_tag(user.profile_image, class: "user-image img-thumbnail") %>
+            <% else %>
+              <%= image_tag('popcorn.jpg', class: "user-image img-thumbnail") %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= user.username %></h5>
+            <p class="card-text"><%= user.introduction %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
