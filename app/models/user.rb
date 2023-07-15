@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, authentication_keys: [:login]
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
   validates :introduction, length: { maximum: 100 }
@@ -60,6 +60,10 @@ class User < ApplicationRecord
 
   def login
     @login || self.username || self.email
+  end
+
+  def login=(login)
+    @login = login
   end
 
   # Class methods
