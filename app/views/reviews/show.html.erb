@@ -23,38 +23,7 @@
   </div>
 
   <div class="review-details text-center">
-    <p>ストーリーの評価: <%= @review.story_rating %></p>
-    <p class="<%= 'spoiler' if @review.story_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= @review.story_comment %>">
-      <% if @review.story_spoiler %>
-        <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-      <% else %>
-        <%= @review.story_comment %>
-      <% end %>
-    </p>
-    <p>キャストの評価: <%= @review.cast_rating %></p>
-    <p class="<%= 'spoiler' if @review.cast_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= @review.cast_comment %>">
-      <% if @review.cast_spoiler %>
-        <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-      <% else %>
-        <%= @review.cast_comment %>
-      <% end %>
-    </p>
-    <p>音楽の評価: <%= @review.music_rating %></p>
-    <p class="<%= 'spoiler' if @review.music_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= @review.music_comment %>">
-      <% if @review.music_spoiler %>
-        <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-      <% else %>
-        <%= @review.music_comment %>
-      <% end %>
-    </p>
-    <p>演出＆映像の評価: <%= @review.direction_rating %></p>
-    <p class="<%= 'spoiler' if @review.direction_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= @review.direction_comment %>">
-      <% if @review.direction_spoiler %>
-        <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-      <% else %>
-        <%= @review.direction_comment %>
-      <% end %>
-    </p>
+    <%= render 'shared/review_details', review: @review %>
   </div>
 
   <% if @review.user == current_user || current_user.admin? %>
@@ -68,7 +37,7 @@
     <div id="like-button">
       <% like = current_user.likes.find_by(review_id: @review.id) %>
       <% if like %>
-        <%= link_to movie_review_like_path(@review.movie, like, format: :js), method: :delete, remote: true do %>
+        <%= link_to movie_review_like_path(@review.movie, @review, like, format: :js), method: :delete, remote: true do %>
           <i class="fa-solid fa-heart-crack"></i>
         <% end %>
       <% else %>
@@ -80,6 +49,7 @@
     <p id="like_count"><%= @review.likes.count %> Likes</p>
   </div>
 </div>
+
 
 <% @review.comments.each do |comment| %>
   <div class="d-flex justify-content-center">
@@ -200,31 +170,6 @@
   margin-right: auto;
 }
 
-.form-row {
-  margin-bottom: 20px;
-}
-
-.form-control {
-  border-radius: 5px;
-  box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2);
-  padding: 10px;
-}
-
-.btn-dark {
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  background-color: #343a40;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
-}
-
-.btn-dark:hover {
-  background-color: #1a1a1a;
-}
-
 .comment {
   width: 60%;
   margin-bottom: 20px;
@@ -282,10 +227,6 @@
   color: #BB0000;
 }
 
-.spoiler {
-  cursor: pointer;
-}
-
 .img-thumbnail {
   width: 100px;
   height: auto;
@@ -297,9 +238,8 @@
 
 .username {
   position: absolute;
-  top: 30px; /* Adjust as necessary */
-  left: 30px; /* Adjust as necessary */
-  /* Rest of your CSS */
+  top: 30px;
+  left: 30px;
 }
 </style>
 

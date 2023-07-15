@@ -70,10 +70,6 @@
     margin-bottom: 5px;
     text-align: center;
   }
-
-.spoiler {
-  cursor: pointer;
-}
 </style>
 
 
@@ -162,38 +158,7 @@
     <% @reviews.each do |review| %>
       <%= link_to movie_review_path(review.movie, review), class: "review-link" do %>
         <div class="card">
-          <p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
-          <p class="<%= 'spoiler' if review.story_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.story_comment %>">
-            <% if review.story_spoiler %>
-              <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-            <% else %>
-              <%= review.story_comment %>
-            <% end %>
-          </p>
-          <p><strong>キャストの評価: <%= review.cast_rating %></strong></p>
-          <p class="<%= 'spoiler' if review.cast_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.cast_comment %>">
-            <% if review.cast_spoiler %>
-              <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-            <% else %>
-              <%= review.cast_comment %>
-            <% end %>
-          </p>
-          <p><strong>音楽の評価: <%= review.music_rating %></strong></p>
-          <p class="<%= 'spoiler' if review.music_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.music_comment %>">
-            <% if review.music_spoiler %>
-              <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-            <% else %>
-              <%= review.music_comment %>
-            <% end %>
-          </p>
-          <p><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
-          <p class="<%= 'spoiler' if review.direction_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.direction_comment %>">
-            <% if review.direction_spoiler %>
-              <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
-            <% else %>
-              <%= review.direction_comment %>
-            <% end %>
-          </p>
+          <%= render 'shared/review_details', review: review %>
           <div class="card-footer text-muted" style="font-size: 12px;">
             <div class="username">
               <h3><%= link_to review.user.username, user_path(review.user), style: "text-decoration: none; color: inherit;" %></h3>

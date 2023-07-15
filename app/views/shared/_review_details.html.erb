@@ -1,0 +1,32 @@
+<p><strong>ストーリーの評価: <%= review.story_rating %></strong></p>
+<p class="<%= 'spoiler' if review.story_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.story_comment %>">
+  <% if review.story_spoiler %>
+    <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
+  <% else %>
+    <%= review.story_comment %>
+  <% end %>
+</p>
+<p><strong>キャストの評価: <%= review.cast_rating %></strong></p>
+<p class="<%= 'spoiler' if review.cast_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.cast_comment %>">
+  <% if review.cast_spoiler %>
+    <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
+  <% else %>
+    <%= review.cast_comment %>
+  <% end %>
+</p>
+<p><strong>音楽の評価: <%= review.music_rating %></strong></p>
+<p class="<%= 'spoiler' if review.music_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.music_comment %>">
+  <% if review.music_spoiler %>
+    <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
+  <% else %>
+    <%= review.music_comment %>
+  <% end %>
+</p>
+<p><strong>演出＆映像の評価: <%= review.direction_rating %></strong></p>
+<p class="<%= 'spoiler' if review.direction_spoiler %>" onclick="showSpoiler(event)" data-spoiler="<%= review.direction_comment %>">
+  <% if review.direction_spoiler %>
+    <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>ネタバレを含みます
+  <% else %>
+    <%= review.direction_comment %>
+  <% end %>
+</p>
