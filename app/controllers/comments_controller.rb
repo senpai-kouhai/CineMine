@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_review
-  before_action :set_comment, only: [:destroy]
+  before_action :authenticate_user! #アクションの実行前にログインの確認
+  before_action :set_review #アクションの実行前にセットレビュー
+  before_action :set_comment, only: [:destroy] #destroyアクションの実行前のみセットコメント
 
   def create
-    @comment = current_user.comments.build(comment_params)
-    @comment.review_id = @review.id
+    @comment = current_user.comments.build(comment_params) #現在ログインしているユーザーに関連付けられたコメントを作成するためのインスタンス
+    @comment.review_id = @review.id #@commentインスタンスのreview_id属性にレビューの値をセット
 
     if @comment.save
       flash[:notice] = 'コメントが投稿されました。'
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if @comment.user_id == current_user.id || current_user.admin?
+    if @comment.user_id == current_user.id || current_user.admin? #||…または, current_user.admin?…管理者かどうか？
       @comment.destroy
       flash[:notice] = 'コメントが削除されました。'
     else
