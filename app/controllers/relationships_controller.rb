@@ -17,9 +17,9 @@ class RelationshipsController < ApplicationController
 
   def set_user
     if params[:followed_id].present?
-      @user = User.find(params[:followed_id])
+      @user = User.find(params[:followed_id]) #ユーザーを followed_id の値に基づいてデータベースから取得
     else
-      @user = Relationship.find(params[:id]).followed
+      @user = Relationship.find(params[:id]).followed #Relationship から params[:id] の値に基づいてレコードをデータベースから取得
     end
   end
 
@@ -31,9 +31,9 @@ class RelationshipsController < ApplicationController
   end
 
   def respond_to_user
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
+    respond_to do |format| #レスポンスを設定
+      format.html { redirect_to @user } #リクエストがHTMLフォーマットである場合
+      format.js #リクエストがJavaScriptフォーマットである場合
     end
   end
 end
