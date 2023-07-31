@@ -7,8 +7,8 @@ class MoviesController < ApplicationController
     @genres = MovieGenresService.fetch_genres
     response = MovieIndexService.fetch_popular_movies(@page)
 
-    unless response['results']
-      return handle_failed_api_response(movies_index_path(page: 1))
+    unless response['results'] #APIレスポンスがfalseだった場合
+      return handle_failed_api_response(movies_index_path(page: 1)) #1page目へリダイレクト
     end
 
     assign_movie_data(response)
