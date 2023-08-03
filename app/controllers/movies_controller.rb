@@ -32,12 +32,14 @@ class MoviesController < ApplicationController
     movie_id = params[:id]
     @movie = MovieDetailsService.fetch_movie_details(movie_id)
 
-    unless @movie
+    unless @movie #映画の詳細情報が取得できなかった場合
       return handle_failed_api_response(movies_path)
     end
 
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.includes(:user).order(created_at: :desc)
+    #includesメソッドはリレーションシップを持つモデルのデータを一度のクエリで取得する→N+1問題の解決
+    #order(created_at: :desc)は作成日時の降順でソート
   end
 
   def add_to_movielist
