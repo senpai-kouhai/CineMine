@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def search
-    response = if params[:genre].present?
+    response = if params[:genre].present? #ジャンルがあるもののみジャンルで検索可能
       MovieSearchService.search_by_genre(params[:genre], @page)
     else
       MovieSearchService.search_by_keyword(params[:keyword], @page)
