@@ -57,7 +57,7 @@ class MoviesController < ApplicationController
   private
 
   def set_page
-    @page = (params[:page] || 1).to_i
+    @page = (params[:page] || 1).to_i #pageが存在しない場合はデフォルト値として1
   end
 
   def assign_movie_data(response)
