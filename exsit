@@ -1,0 +1,359 @@
+[33mcommit 137e86d977dd09d11946734d09467daff378fd72[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m)[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Aug 13 06:20:06 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Aug 13 06:20:06 2023 +0000
+
+    comments
+
+[33mcommit 2e2644ad2a60213da02f1fcfad5190490aa98afb[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Aug 7 11:54:25 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Aug 7 11:54:25 2023 +0000
+
+    comments
+
+[33mcommit c4db8b74266a6d083fe6fe4ecf3a29e8b0cb1bbc[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Aug 4 12:30:47 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Aug 4 12:30:47 2023 +0000
+
+    comment
+
+[33mcommit ba68d0e3384cc0d44da41f0e879758b7d52c141b[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jul 31 09:20:52 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jul 31 09:20:52 2023 +0000
+
+    comments
+
+[33mcommit 0bd2f9fd2daade51087c7ff87f7e8a0188d00b4c[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Wed Jul 26 13:49:23 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Wed Jul 26 13:49:23 2023 +0000
+
+    comments
+
+[33mcommit ec902ac3fff5ba4a4a592350dd39bc19d1a72bba[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jul 23 03:21:25 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jul 23 03:21:25 2023 +0000
+
+    add comments
+
+[33mcommit 31e1287846f0603b6a4434be99a3b7d14b760ef6[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Thu Jul 20 10:03:16 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Thu Jul 20 10:03:16 2023 +0000
+
+    add comments
+
+[33mcommit ba542a58675aacf6b32b4898d26501d3d16ff6be[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jul 15 09:46:05 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jul 15 09:46:05 2023 +0000
+
+    fix
+
+[33mcommit 32afbd35e23427e56b36e5d69ba0a12ae8a574e5[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jul 15 09:00:31 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jul 15 09:00:31 2023 +0000
+
+    sort_out_code
+
+[33mcommit a36752169a547686f56da7b224c7b70a4c11de57[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jul 14 06:52:50 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jul 14 06:52:50 2023 +0000
+
+    sort_out_code
+
+[33mcommit b32abce71a7d8c8ce433b61ccf2bc42e6550299c[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Thu Jul 6 03:01:46 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Thu Jul 6 03:01:46 2023 +0000
+
+    add sentiment_score function
+
+[33mcommit dcff4884e5ede4bcba507567052efc9b0d374dc6[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 12:02:32 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 12:02:32 2023 +0000
+
+    Finish CineMine
+
+[33mcommit 496cadeb019bac25f21daf7ccfee5e50654faa47[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 11:34:39 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 11:34:39 2023 +0000
+
+    fix
+
+[33mcommit 890a4a627ae8c60251664d13105db73c91d92dcb[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 11:19:35 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 11:19:35 2023 +0000
+
+    fix
+
+[33mcommit 26f8098b958012aae2f6bb580d041c157d5a7ef7[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 10:44:15 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 10:44:15 2023 +0000
+
+    Finish my app
+
+[33mcommit 12306eccfa125311b6143cdae4e158447534cd31[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 07:02:21 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 07:02:21 2023 +0000
+
+    FINISH CineMine
+
+[33mcommit 9746b882d8d649f1eab80a2fb92a44ed7ceec8e5[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 06:51:07 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 06:51:07 2023 +0000
+
+    Finish CineMine
+
+[33mcommit 60126a7ef7cb7f239269cdb995283ce8eaee513b[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 06:38:11 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 06:38:11 2023 +0000
+
+    finish CineMine
+
+[33mcommit 2581b3160757d0c35c369bf4c499ae7ae68a13e1[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 05:52:52 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 05:52:52 2023 +0000
+
+    finish CineMine
+
+[33mcommit 9906e3a0e6315fa7a7e57c0ee91a3991cb432e5f[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 27 04:21:36 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 27 04:21:36 2023 +0000
+
+    add user_search function
+
+[33mcommit ab0f77431b8e69c4e3b5920e7c579f57b2376f06[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jun 26 15:16:51 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jun 26 15:16:51 2023 +0000
+
+    user_profile_image
+
+[33mcommit 5ecfbf134ab5c4ded8f56c0b7a227999688704f8[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jun 26 10:00:08 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jun 26 10:00:08 2023 +0000
+
+    add spoiler_controll
+
+[33mcommit bc5cfb613b30ea4934d7ebec4c5734b942c63a6c[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jun 26 06:42:06 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jun 26 06:42:06 2023 +0000
+
+    add edit&delete_review function
+
+[33mcommit 969aeec92adbd10cf71a3f69935336ecb0f4a45e[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 25 16:02:52 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 25 16:02:52 2023 +0000
+
+    add comment function
+
+[33mcommit 343962dace76308fcc360573189835e6dd453004[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 25 10:38:30 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 25 10:38:30 2023 +0000
+
+    add review_search function
+
+[33mcommit fdfc62e5a9cc32046e0425694c30441ddd6a3474[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 25 06:30:23 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 25 06:30:23 2023 +0000
+
+    fixed some design&function
+
+[33mcommit aabf72d7cf13c1ec01bbe7af613b63de0dcc5c5f[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 25 05:00:34 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 25 05:00:34 2023 +0000
+
+    design fixed
+
+[33mcommit d21eb79fc70b74b104af6425002d16cc55be8c5a[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jun 24 13:07:33 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jun 24 13:07:33 2023 +0000
+
+    finish movie_index_page
+
+[33mcommit cd6adec8fc0703cd1fba74201d7f8896e56fa960[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jun 24 10:53:41 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jun 24 10:53:41 2023 +0000
+
+    finish signin&signup page
+
+[33mcommit 14a9d0cba1d1bad7697a2e048da52716c8b7a6ce[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jun 24 04:14:53 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jun 24 04:14:53 2023 +0000
+
+    finish top&about page
+
+[33mcommit 0b36f73cd237605451a302f7f6dc5226e8b3f14e[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jun 23 17:25:04 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jun 23 17:25:04 2023 +0000
+
+    design top_page
+
+[33mcommit 15a13791388cbaa22e285b54ae65bc476c96e94b[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jun 23 05:28:41 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jun 23 05:28:41 2023 +0000
+
+    add movie_list_function
+
+[33mcommit da1d83e80dfa7aac56bacade759eb2b7e98014ad[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Thu Jun 22 06:15:32 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Thu Jun 22 06:15:32 2023 +0000
+
+    create follow&like_function
+
+[33mcommit 92beb41c278c0f33e83bf728e2b9b0e5b71d19fd[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 20 07:42:48 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 20 07:42:48 2023 +0000
+
+    deploy setting
+
+[33mcommit a05cc4c573ed26719d38ea5060e4d190503b2225[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Tue Jun 20 07:37:41 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Tue Jun 20 07:37:41 2023 +0000
+
+    create user_show_page
+
+[33mcommit a05eabe62dcab92f2e4ff2d52c7c3e0091d90f2a[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jun 19 12:28:14 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jun 19 12:28:14 2023 +0000
+
+    created review_function
+
+[33mcommit 95d7db62356c71ac618c55ff55cde593f67f0da4[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Mon Jun 19 12:14:16 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Mon Jun 19 12:14:16 2023 +0000
+
+    creating review_function
+
+[33mcommit 4042eca6f2e6332b711c2b0b537f4d189228eae5[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 18 09:20:51 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 18 09:20:51 2023 +0000
+
+    tidy search_result_page
+
+[33mcommit 6c9d3c1a1eb5f726e7e84b7af7e72d2618a2aa2d[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 18 06:02:27 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 18 06:02:27 2023 +0000
+
+    add search function
+
+[33mcommit 096f765f8d83ae574ad5f3e146d47249a3876c07[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sat Jun 17 03:11:09 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sat Jun 17 03:11:09 2023 +0000
+
+    add pagenation
+
+[33mcommit 4395f227454223e7c43caeaca933630d76e8d657[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jun 16 10:38:39 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jun 16 10:38:39 2023 +0000
+
+    activation TMDb
+
+[33mcommit 2f311a47a7dc56d67933632e9ede112e03a46c2e[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jun 16 10:34:24 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jun 16 10:34:24 2023 +0000
+
+    empty commit
+
+[33mcommit 9ac9f193979bc783bcaa86ac9117ad74f3beeae5[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Thu Jun 15 03:12:26 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Thu Jun 15 03:12:26 2023 +0000
+
+    devise install
+
+[33mcommit e6eb17bb3ede87860c7822c6c15727f46d5118ec[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Sun Jun 4 03:30:40 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Sun Jun 4 03:30:40 2023 +0000
+
+    second commit
+
+[33mcommit fca70d180fb22513bee161dc703b81473d82ba6c[m
+Author:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+AuthorDate: Fri Jun 2 12:32:14 2023 +0000
+Commit:     senpai-kouhai <129678369+senpai-kouhai@users.noreply.github.com>
+CommitDate: Fri Jun 2 12:32:14 2023 +0000
+
+    first commit
