@@ -21,8 +21,8 @@ class MoviesController < ApplicationController
       MovieSearchService.search_by_keyword(params[:keyword], @page)
     end
 
-    unless response['results']
-      return handle_failed_api_response(search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword]))
+    unless response['results'] #response['results']がfalseだった場合
+      return handle_failed_api_response(search_movies_path(page: 1, genre: params[:genre], keyword: params[:keyword])) #1ページ目へリダイレクト
     end
 
     assign_movie_data(response)
