@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
       redirect_to @movie, notice: 'レビューを投稿しました。'
     else
       flash.now[:error] = 'レビューの投稿に失敗しました。'
-      Rails.logger.info @review.errors.full_messages
+      Rails.logger.info @review.errors.full_messages #バリデーションエラーの全てのエラーメッセージがログに出力
       @reviews = @movie.reviews.where.not(id: nil)
       render 'movies/show'
     end
