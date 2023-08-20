@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
     @movie = Movie.find(params[:movie_id])
-    @review = @movie.reviews.build(review_params)
+    @review = @movie.reviews.build(review_params) #buildメソッドは新しい関連オブジェクトを作成する
     @review.user = current_user
     if @review.save
       redirect_to @movie, notice: 'レビューを投稿しました。'
