@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     else
       flash.now[:error] = 'レビューの投稿に失敗しました。'
       Rails.logger.info @review.errors.full_messages #バリデーションエラーの全てのエラーメッセージがログに出力
-      @reviews = @movie.reviews.where.not(id: nil)
+      @reviews = @movie.reviews.where.not(id: nil )#idカラムがnilじゃないレビューを抽出
       render 'movies/show'
     end
   end
