@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     else
       flash.now[:error] = 'レビューの投稿に失敗しました。'
       Rails.logger.info @review.errors.full_messages #バリデーションエラーの全てのエラーメッセージがログに出力
-      @reviews = @movie.reviews.where.not(id: nil )#idカラムがnilじゃないレビューを抽出
+      @reviews = @movie.reviews.where.not(id: nil) #idカラムがnilじゃないレビューを抽出
       render 'movies/show'
     end
   end
@@ -22,10 +22,10 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    if params[:search].blank?
-      @reviews = Review.all
+    if params[:search].blank? #searchリクエストが空の場合
+      @reviews = Review.all #全てのレビューを表示
     else
-      @reviews = Review.search(params[:search])
+      @reviews = Review.search(params[:search]) #searchスコープを使って検索クエリに基づいてレビューを検索
     end
   end
 
