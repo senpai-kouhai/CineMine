@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit; end #空のeditアクション
 
   def update
     if @review.update(review_params)
