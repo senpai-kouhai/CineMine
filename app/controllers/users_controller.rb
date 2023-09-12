@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def movielist
     @user = current_user
-    @movies = @user.movie_lists.map(&:movie_details)
+    @movies = @user.movie_lists.map(&:movie_details) #map-各要素を変換して新しい配列を作成する,&-ブロックをProcオブジェクトに変換するという操作
   end
 
   def likes
