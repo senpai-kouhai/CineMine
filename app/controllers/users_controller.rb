@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def userhome
     @reviews = Review.where(user_id: [current_user.id, *current_user.following.ids]) #*は展開演算子
-                     .order(created_at: :desc)
+                     .order(created_at: :desc) #日付で降順
   end
 
   def show
